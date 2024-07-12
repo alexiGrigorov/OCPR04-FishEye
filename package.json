@@ -1,0 +1,25 @@
+{
+  "name": "ocpr05-fisheye",
+  "version": "1.0.0",
+  "description": "Créez un site accessible pour une plateforme de photographes",
+  "main": "./scripts/pages/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alexiGrigorov/OCPR05-FishEye.git"
+  },
+  "author": "Alexi GRIGOROV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexiGrigorov/OCPR05-FishEye/issues"
+  },
+  "homepage": "https://github.com/alexiGrigorov/OCPR05-FishEye#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "eslint": "^9.6.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.8.0"
+  }
+}

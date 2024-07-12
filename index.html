@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script
+      src="scripts/templates/Photographer_Preview.js"
+      defer
+      type="module"
+    ></script> -->
+    <script src="scripts/pages/index.mjs" defer type="module"></script>
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
-    <script src="scripts/templates/photographer.js" defer></script>
-    <script src="scripts/pages/index.js" defer></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
     <title>Fisheye</title>
   </head>
   <body>
@@ -18,7 +23,21 @@
       <h1>Nos photographes</h1>
     </header>
     <main id="main">
-      <div class="photographer_section"></div>
+      <div class="photographer_section">
+        <template id="photographer">
+          <article>
+            <section class="presentation">
+              <img id="portrait" src="" alt="" />
+              <h2 id="name"></h2>
+            </section>
+            <section class="info">
+              <p id="location"></p>
+              <p id="tagline"></p>
+              <p id="price"></p>
+            </section>
+          </article>
+        </template>
+      </div>
     </main>
   </body>
 </html>

@@ -3,32 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <script
-      src="scripts/templates/Photographer_Preview.js"
-      defer
-      type="module"
-    ></script> -->
-    <script src="scripts/pages/index.mjs" defer type="module"></script>
-    <!-- <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    /> -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+    <link href="./dist/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./dist/css/home.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/images/fisheye/favicon.png"
+    />
+    <script src="./src/scripts/pages/home.mjs" defer type="module"></script>
     <title>Fisheye</title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
+      <img
+        src="assets/images//fisheye/logo.png"
+        class="logo"
+        alt="fisheye logo"
+      />
       <h1>Nos photographes</h1>
     </header>
     <main id="main">
-      <div class="photographer_section">
-        <template id="photographer">
-          <article>
+      <div id="featured-photographers" class="featured-photographers">
+        <template id="photographer-preview-template">
+          <article class="photographer-preview">
             <section class="presentation">
               <img id="portrait" src="" alt="" />
               <h2 id="name"></h2>
+              <a id="link" href="./photographer.html"></a>
             </section>
             <section class="info">
               <p id="location"></p>

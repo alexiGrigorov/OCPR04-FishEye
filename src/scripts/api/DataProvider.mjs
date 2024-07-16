@@ -1,64 +1,99 @@
-import DataModelPhotographer from "../models/DataModelPhotographer.js";
-import DataModelMediaFactory from "../models/DataModelMediaFactory.js";
+import DataModelPhotographer from "../models/Photographer.mjs";
+import DataModelMediaFactory from "../models/Media.mjs";
 
 export default class DataProvider {
+  static #url = "./../../../db/photographers.json";
+  static #singleton;
+
   #rawData;
   #photographers;
   #medias;
 
-  constructor(url) {
-    this.url = url;
-    this.#rawData = sessionStorage.getItem("rawData")
-      ? JSON.parse(sessionStorage.getItem("rawData"))
-      : this.#fetchRawData();
-    this.#photographers = sessionStorage.getItem("photographers")
-      ? JSON.parse(sessionStorage.getItem("photographers"))
-      : this.#parsePhotographers();
-    this.#medias = sessionStorage.getItem("medias")
-      ? JSON.parse(sessionStorage.getItem("medias"))
-      : this.#parseMedias();
+  constructor() {
+    if (DataProvider.#singleton) {
+      return DataProvider.#singleton;
+    }
+    DataProvider.#singleton = this;
+
+    if (
+      sessionStorage.getItem("rawData") &&
+      sessionStorage.getItem("photographers") &&
+      sessionStorage.getItem("medias")
+    ) {
+      this.#rawData = JSON.parse(sessionStorage.getItem("rawData"));
+      this.#photographers = JSON.parse(sessionStorage.getItem("photographers"));
+      this.#medias = JSON.parse(sessionStorage.getItem("medias"));
+      return this;
+    }
+
+    this.updateData();
   }
 
   async #fetchRawData() {
+    let rawData;
+
     try {
-      const response = await fetch(this.url);
-      const rawData = await response.json();
-      sessionStorage.setItem("rawData", JSON.stringify(rawData));
-      return rawData;
+      const response = await fetch(DataProvider.#url);
+      rawData = await response.json();
     } catch (error) {
       throw new Error(error);
     }
+
+    return rawData;
   }
 
-  async #parsePhotographers() {
-    const rawData = await this.#rawData;
-    const photographers = rawData.photographers.map(
+  #parsePhotographers() {
+    const photographers = this.#rawData.photographers.map(
       (photographer) => new DataModelPhotographer(photographer)
     );
-    sessionStorage.setItem("photographers", JSON.stringify(photographers));
     return photographers;
   }
 
-  async #parseMedias() {
-    // Ensures that both promises resolve in parallel rather than sequentially
-    const [rawData, photographers] = await Promise.all([
-      this.#rawData,
-      this.#photographers,
-    ]);
-
-    const dataModelMediaFactory = new DataModelMediaFactory(photographers);
-    const medias = rawData.media.map((media) =>
+  #parseMedias() {
+    const dataModelMediaFactory = new DataModelMediaFactory(
+      this.#photographers
+    );
+    const medias = this.#rawData.media.map((media) =>
       dataModelMediaFactory.create(media)
     );
-    sessionStorage.setItem("medias", JSON.stringify(medias));
     return medias;
   }
 
-  get photographers() {
-    return new Promise((resolve) => resolve(this.#photographers));
+  async updateData() {
+    sessionStorage.clear();
+    let fetchedData;
+
+    try {
+      fetchedData = await this.#fetchRawData();
+    } catch (error) {
+      console.error(error);
+    }
+
+    // set the instance properties
+    this.#rawData = fetchedData;
+    this.#photographers = this.#parsePhotographers();
+    this.#medias = this.#parseMedias();
+
+    // save them into the session storage
+    sessionStorage.setItem("rawData", JSON.stringify(this.#rawData));
+    sessionStorage.setItem(
+      "photographers",
+      JSON.stringify(this.#photographers)
+    );
+    sessionStorage.setItem("medias", JSON.stringify(this.#medias));
   }
 
-  get medias() {
-    return new Promise((resolve) => resolve(this.#medias));
+  async getPhotographers() {
+    while (!this.#photographers) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    return this.#photographers;
+  }
+
+  async getMedias() {
+    while (!this.#medias) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    return this.#medias;
   }
 }

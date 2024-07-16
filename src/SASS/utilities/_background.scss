@@ -1,0 +1,10 @@
+[class^="bg-"],
+[class*=" bg-"] {
+  background-color: var(--_clr-bg);
+  color: var(--_clr-txt);
+}
+
+.bg-example {
+  --_clr-bg: #fff;
+  --_clr-txt: #000;
+}

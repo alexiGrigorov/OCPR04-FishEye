@@ -6,8 +6,6 @@ class App {
     this.dataProvider = new DataProvider("../../data/photographers.json");
   }
   async init() {
-    console.log(await this.dataProvider.photographers);
-    console.log(await this.dataProvider.medias);
     // Récupère les datas des photographes
     const photographers = await this.dataProvider.photographers;
     this.displayData(photographers);

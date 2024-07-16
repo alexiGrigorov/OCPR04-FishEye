@@ -1,0 +1,448 @@
+@use "sass:math";
+@use "sass:string";
+@use "sass:map";
+
+// Singular clamp
+@function calculateClamp($params) {
+  $unit: 0.0625rem;
+  @if (map.get($params, "usePx")) {
+    $unit: 1px;
+  }
+
+  $relativeUnit: 1vi;
+  @if (map.get($params, "relativeTo") == "container") {
+    $relativeUnit: 1cqi;
+  }
+  @if (map.get($params, "relativeTo") == "viewport-width") {
+    $relativeUnit: 1vw;
+  }
+
+  $isNegative: map.get($params, "minSize") > map.get($params, "maxSize");
+  $min: map.get($params, "minSize");
+  $max: map.get($params, "maxSize");
+
+  @if ($isNegative) {
+    $min: map.get($params, "maxSize");
+    $max: map.get($params, "minSize");
+  }
+
+  $slope: math.div(
+    (map.get($params, "maxSize") - map.get($params, "minSize")),
+    (map.get($params, "maxWidth") - map.get($params, "minWidth"))
+  );
+  $intersection: (-1 * map.get($params, "minWidth")) * $slope +
+    map.get($params, "minSize");
+  @return "clamp(#{roundValue($min * $unit)}, #{roundValue($intersection * $unit)} + #{roundValue($slope * 100) * $relativeUnit}, #{roundValue($max * $unit)})";
+}
+
+// Type
+
+@function calculateTypeSize($config, $viewport, $step) {
+  $scale: range(
+    map.get($config, "minWidth"),
+    map.get($config, "maxWidth"),
+    map.get($config, "minTypeScale"),
+    map.get($config, "maxTypeScale"),
+    $viewport
+  );
+  $fontSize: range(
+    map.get($config, "minWidth"),
+    map.get($config, "maxWidth"),
+    map.get($config, "minFontSize"),
+    map.get($config, "maxFontSize"),
+    $viewport
+  );
+  @return $fontSize * math.pow($scale, $step);
+}
+
+@function calculateTypeStep($config, $step) {
+  $minSize: calculateTypeSize($config, map.get($config, "minWidth"), $step);
+  $maxSize: calculateTypeSize($config, map.get($config, "maxWidth"), $step);
+
+  @return (
+    "step": #{400 + 100 * $step},
+    "minSize": $minSize,
+    "maxSize": $maxSize,
+    "clamp":
+      calculateClamp(
+        (
+          "minWidth": map.get($config, "minWidth"),
+          "maxWidth": map.get($config, "maxWidth"),
+          "minSize": $minSize,
+          "maxSize": $maxSize,
+          "relativeTo": map.get($config, "relativeTo"),
+        )
+      )
+  );
+}
+
+@function calculateTypeScale($config) {
+  $steps: newList(calculateTypeStep($config, 0));
+
+  $positiveSteps: getDefault($config, "positiveSteps", 0);
+  @if ($positiveSteps != 0) {
+    @for $i from 1 through $positiveSteps {
+      $steps: append($steps, calculateTypeStep($config, $i));
+    }
+  }
+
+  $negativeSteps: getDefault($config, "negativeSteps", 0);
+  @if ($negativeSteps != 0) {
+    @for $i from 1 through $negativeSteps {
+      $steps: prepend($steps, calculateTypeStep($config, -1 * $i));
+    }
+  }
+
+  @return $steps;
+}
+
+// Space
+
+@function calculateSpaceSize($config, $multiplier, $step) {
+  $minSize: math.round(map.get($config, "minSize") * $multiplier);
+  $maxSize: math.round(map.get($config, "maxSize") * $multiplier);
+
+  $label: #{600};
+  @if ($step != 0) {
+    $label: #{600 + 100 * $step};
+  }
+
+  @return (
+    "label": $label,
+    "minSize": roundValue($minSize),
+    "maxSize": roundValue($maxSize),
+    "clamp":
+      calculateClamp(
+        (
+          "minWidth": map.get($config, "minWidth"),
+          "maxWidth": map.get($config, "maxWidth"),
+          "minSize": $minSize,
+          "maxSize": $maxSize,
+          "relativeTo": map.get($config, "relativeTo"),
+        )
+      )
+  );
+}
+
+@function calculateOneUpPairs($config, $sizes) {
+  $pairs: ();
+  @each $size in $sizes {
+    $i: index($sizes, $size);
+    @if ($i > 1) {
+      $prev: nth($sizes, $i - 1);
+
+      $pairs: append(
+        $pairs,
+        (
+          "label": "#{map.get($prev, "label")}-#{map.get($size, "label")}",
+          "minSize": map.get($prev, "minSize"),
+          "maxSize": map.get($size, "maxSize"),
+          "clamp":
+            calculateClamp(
+              (
+                "minWidth": map.get($config, "minWidth"),
+                "maxWidth": map.get($config, "maxWidth"),
+                "minSize": map.get($prev, "minSize"),
+                "maxSize": map.get($size, "maxSize"),
+                "relativeTo": map.get($config, "relativeTo"),
+              )
+            ),
+        )
+      );
+    }
+  }
+
+  @return $pairs;
+}
+
+@function calculateCustomPairs($config, $sizes) {
+  $pairs: ();
+  $customSizes: map.get($config, "customSizes");
+
+  @if (type-of($customSizes) != "list") {
+    @return $pairs;
+  }
+
+  @each $label in $customSizes {
+    $keys: string.split($label, "-", 1);
+    $a: findByKey($sizes, "label", nth($keys, 1));
+    $b: findByKey($sizes, "label", nth($keys, 2));
+    @if (type-of($a) == "map" and type-of($b) == "map") {
+      $pairs: append(
+        $pairs,
+        (
+          "label": "#{map.get($a, "label")}-#{map.get($b, "label")}",
+          "minSize": map.get($a, "minSize"),
+          "maxSize": map.get($b, "maxSize"),
+          "clamp":
+            calculateClamp(
+              (
+                "minWidth": map.get($config, "minWidth"),
+                "maxWidth": map.get($config, "maxWidth"),
+                "minSize": map.get($a, "minSize"),
+                "maxSize": map.get($b, "maxSize"),
+                "relativeTo": map.get($config, "relativeTo"),
+              )
+            ),
+        )
+      );
+    }
+  }
+
+  @return $pairs;
+}
+
+@function calculateSpaceScale($config) {
+  $sizes: newList(calculateSpaceSize($config, 1, 0));
+
+  $positiveSteps: map.get($config, "positiveSteps");
+  @if (type-of($positiveSteps) == "list") {
+    @each $step in $positiveSteps {
+      $i: index($positiveSteps, $step);
+      $sizes: append($sizes, calculateSpaceSize($config, $step, $i));
+    }
+  }
+
+  $negativeSteps: map.get($config, "negativeSteps");
+  @if (type-of($negativeSteps) == "list") {
+    @each $step in $negativeSteps {
+      $i: index($negativeSteps, $step);
+      $sizes: prepend($sizes, calculateSpaceSize($config, $step, -1 * $i));
+    }
+  }
+
+  @return (
+    "sizes": $sizes,
+    "oneUpPairs": calculateOneUpPairs($config, $sizes),
+    "customPairs": calculateCustomPairs($config, $sizes)
+  );
+}
+
+// Clamps
+
+@function calculateClamps($config) {
+  $pairs: ();
+
+  @each $item in map.get($config, "pairs") {
+    $min: nth($item, 1);
+    $max: nth($item, 2);
+    $pairs: append(
+      $pairs,
+      (
+        "label": "#{$min}-#{$max}",
+        "clamp":
+          calculateClamp(
+            (
+              "minWidth": map.get($config, "minWidth"),
+              "maxWidth": map.get($config, "maxWidth"),
+              "minSize": $min,
+              "maxSize": $max,
+              "usePx": map.get($config, "usePx"),
+              "relativeTo": map.get($config, "relativeTo"),
+            )
+          ),
+      )
+    );
+  }
+
+  @return $pairs;
+}
+
+// Mixins
+
+@mixin generateTypeScale($config) {
+  $prefix: "fs-";
+  @each $step in calculateTypeScale($config) {
+    --#{$prefix}#{map.get($step, "step")}: #{map.get($step, "clamp")};
+  }
+}
+
+@mixin generateSpaceScale($config) {
+  $prefix: "space-";
+  $format: "clamp";
+
+  $scale: calculateSpaceScale($config);
+  @each $size in map.get($scale, "sizes") {
+    --#{$prefix}#{map.get($size, "label")}: #{map.get($size, $format)};
+  }
+
+  @each $size in map.get($scale, "customPairs") {
+    --#{$prefix}#{map.get($size, "label")}: #{map.get($size, $format)};
+  }
+}
+
+@mixin generateClamp($config) {
+  $prefix: getDefault($config, "prefix", "space-");
+  $min: map.get($config, "minSize");
+  $max: map.get($config, "maxSize");
+  --#{$prefix}#{$min}-#{$max}: #{calculateClamp($config)};
+}
+
+@mixin generateClamps($config) {
+  $prefix: getDefault($config, "prefix", "space-");
+  $clamps: calculateClamps($config);
+  @each $size in $clamps {
+    --#{$prefix}#{map.get($size, "label")}: #{map.get($size, "clamp")};
+  }
+}
+
+// Helpers
+
+@function roundValue($number, $digits: 4) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @return math.div(round($number * $n), $n);
+}
+
+@function lerp($x, $y, $a) {
+  @return $x * (1 - $a) + $y * $a;
+}
+
+@function clampValue($a, $min: 0, $max: 1) {
+  @return min($max, max($min, $a));
+}
+
+@function invlerp($x, $y, $a) {
+  @return clampValue(math.div(($a - $x), ($y - $x)));
+}
+
+@function range($x1, $y1, $x2, $y2, $a) {
+  @return lerp($x2, $y2, invlerp($x1, $y1, $a));
+}
+
+@function prepend($list, $value) {
+  @return join(newList($value), $list);
+}
+
+@function getDefault($map, $key, $default) {
+  $value: map.get($map, $key);
+  @if ($value) {
+    @return $value;
+  } @else {
+    @return $default;
+  }
+}
+
+@function newList($value) {
+  $list: $value, $value;
+  @return remove-nth($list, 1);
+}
+
+// @link https://kittygiraudel.com/2013/08/08/advanced-sass-list-functions/
+@function remove-nth($list, $index) {
+  $result: null;
+
+  @if type-of($index) != number {
+    @warn "$index: #{quote($index)} is not a number for `remove-nth`.";
+  } @else if $index == 0 {
+    @warn "List index 0 must be a non-zero integer for `remove-nth`.";
+  } @else if abs($index) > length($list) {
+    @warn "List index is #{$index} but list is only #{length($list)} item long for `remove-nth`.";
+  } @else {
+    $result: ();
+    $index: if($index < 0, length($list) + $index + 1, $index);
+
+    @for $i from 1 through length($list) {
+      @if $i != $index {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function findByKey($list, $key, $value) {
+  @each $item in $list {
+    @if (map.get($item, $key) == $value) {
+      @return $item;
+    }
+  }
+
+  @return false;
+}
+
+$minWidth: 320;
+$maxWidth: 1240;
+$minFontSize: 18;
+$maxFontSize: 20;
+
+$typeScales: (
+  "minorSecond": 1.067,
+  "majorSecond": 1.125,
+  "minorThird": 1.2,
+  "majorThird": 1.25,
+  "perfectFourth": 1.333,
+  "augmentedFourth": 1.414,
+  "perfectFifth": 1.5,
+  "goldenRatio": 1.618,
+  "majorSixth": 1.667,
+  "minorSeventh": 1.778,
+  "majorSeventh": 1.875,
+  "octave": 2,
+);
+
+:root {
+  --min-width: #{$minWidth}px;
+  --max-width: #{$maxWidth}px;
+  --p-max-width: 65ch;
+
+  @include generateTypeScale(
+    (
+      "minWidth": $minWidth,
+      "maxWidth": $maxWidth,
+      "minFontSize": $minFontSize,
+      "maxFontSize": $maxFontSize,
+      "minTypeScale": map.get($typeScales, "minorThird"),
+      "maxTypeScale": map.get($typeScales, "perfectFifth"),
+      "positiveSteps": 5,
+      "negativeSteps": 3,
+    )
+  );
+
+  @include generateSpaceScale(
+    (
+      "minWidth": $minWidth,
+      "maxWidth": $maxWidth,
+      "minSize": $minFontSize,
+      "maxSize": $maxFontSize,
+      "positiveSteps": (
+        1.5,
+        2,
+        3,
+        4,
+        6,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64,
+      ),
+      "negativeSteps": (
+        0.75,
+        0.5,
+        0.25,
+        0.125,
+        0.0625,
+      ),
+      "customSizes": (),
+    )
+  );
+}

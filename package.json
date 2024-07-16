@@ -4,7 +4,8 @@
   "description": "Créez un site accessible pour une plateforme de photographes",
   "main": "./scripts/pages/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch src/sass:dist/css"
   },
   "repository": {
     "type": "git",

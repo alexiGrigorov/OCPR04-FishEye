@@ -1,0 +1,377 @@
+@import url("photographer.css");
+:root {
+  --min-width: 320px;
+  --max-width: 1240px;
+  --p-max-width: 65ch;
+  --fs-100: clamp(0.3704rem, 0.7487rem + -0.4881vi, 0.651rem);
+  --fs-200: clamp(0.5556rem, 0.8598rem + -0.3925vi, 0.7813rem);
+  --fs-300: clamp(0.8333rem, 0.9737rem + -0.1812vi, 0.9375rem);
+  --fs-400: clamp(1.125rem, 1.0815rem + 0.2174vi, 1.25rem);
+  --fs-500: clamp(1.35rem, 1.1674rem + 0.913vi, 1.875rem);
+  --fs-600: clamp(1.62rem, 1.2052rem + 2.0739vi, 2.8125rem);
+  --fs-700: clamp(1.944rem, 1.1528rem + 3.9561vi, 4.2188rem);
+  --fs-800: clamp(2.3328rem, 0.9431rem + 6.9484vi, 6.3281rem);
+  --fs-900: clamp(2.7994rem, 0.4714rem + 11.6397vi, 9.4922rem);
+  --space-100: clamp(0.0625rem, 0.0625rem + 0vi, 0.0625rem);
+  --space-200: clamp(0.125rem, 0.1033rem + 0.1087vi, 0.1875rem);
+  --space-300: clamp(0.3125rem, 0.3125rem + 0vi, 0.3125rem);
+  --space-400: clamp(0.5625rem, 0.5408rem + 0.1087vi, 0.625rem);
+  --space-500: clamp(0.875rem, 0.8533rem + 0.1087vi, 0.9375rem);
+  --space-600: clamp(1.125rem, 1.0815rem + 0.2174vi, 1.25rem);
+  --space-700: clamp(1.6875rem, 1.6223rem + 0.3261vi, 1.875rem);
+  --space-800: clamp(2.25rem, 2.163rem + 0.4348vi, 2.5rem);
+  --space-900: clamp(3.375rem, 3.2446rem + 0.6522vi, 3.75rem);
+  --space-1000: clamp(4.5rem, 4.3261rem + 0.8696vi, 5rem);
+  --space-1100: clamp(6.75rem, 6.4891rem + 1.3043vi, 7.5rem);
+  --space-1200: clamp(9rem, 8.6522rem + 1.7391vi, 10rem);
+  --space-1300: clamp(13.5rem, 12.9783rem + 2.6087vi, 15rem);
+  --space-1400: clamp(18rem, 17.3043rem + 3.4783vi, 20rem);
+  --space-1500: clamp(27rem, 25.9565rem + 5.2174vi, 30rem);
+  --space-1600: clamp(36rem, 34.6087rem + 6.9565vi, 40rem);
+  --space-1700: clamp(54rem, 51.913rem + 10.4348vi, 60rem);
+  --space-1800: clamp(72rem, 69.2174rem + 13.913vi, 80rem);
+}
+
+:root {
+  --clr-neutral-900: #FFFFFF;
+  --clr-neutral-800: #DFDFDF;
+  --clr-neutral-700: #BFBFBF;
+  --clr-neutral-600: #9F9F9F;
+  --clr-neutral-500: #7F7F7F;
+  --clr-neutral-400: #606060;
+  --clr-neutral-300: #404040;
+  --clr-neutral-200: #202020;
+  --clr-neutral-100: #000000;
+}
+
+@font-face {
+  font-family: "project-icons";
+  src: url("../../../assets/fonts/icons/project-icons.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+/* latin-ext */
+@font-face {
+  font-family: "DM Sans";
+  font-style: italic;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("../../assets/fonts/DM_Sans/DM_Sans-italic-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "DM Sans";
+  font-style: italic;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("../../assets/fonts/DM_Sans/DM_Sans-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("../../assets/fonts/DM_Sans/DM_Sans-normal-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("../../assets/fonts/DM_Sans/DM_Sans-normal-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+:root {
+  --ff-sans: "DM Sans", Arial, Helvetica, sans-serif;
+  --ff-icons: "project-icons";
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  hanging-punctuation: first last;
+  scroll-behavior: smooth;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+/* Set core body defaults */
+body {
+  max-width: var(--max-width);
+  min-height: 100svh;
+  font-family: var(--ff-sans);
+  font-size: var(--fs-400);
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* improve readability with max-width on paragraphs and lists */
+/* prevent orphans in supported browsers */
+p,
+li {
+  max-width: var(--p-max-width);
+  text-wrap: pretty;
+}
+
+/* Remove default list styles on lists that have classes on them without raising specificity */
+ul:where(ul[class]),
+ol:where(ol[class]) {
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-style: italic;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: var(--space-1300);
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: var(--space-800);
+}
+
+[class^=icon-]::before,
+[class*=" icon-"]::before,
+[class^=icon-]::after,
+[class*=" icon-"]::after {
+  display: inline-block;
+  color: inherit;
+  font-family: var(--ff-icons) !important;
+  font-size: inherit;
+  font-weight: var(--fw-400);
+  line-height: 1;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  vertical-align: text-bottom;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hidden {
+  display: none;
+}
+
+.cover {
+  position: absolute;
+  inset: 0;
+}
+:has(> .cover) {
+  position: relative;
+}
+
+.wrapper {
+  width: min(var(--_max-wrapper-width, var(--max-width)), 100% - var(--_inline-wrapper-padding, var(--space-500)) * 2);
+  margin-inline: auto;
+}
+
+.wrapper-p-width {
+  width: min(var(--_max-wrapper-width, var(--p-max-width)), 100% - var(--_inline-wrapper-padding, var(--space-300)) * 2);
+  margin-inline: auto;
+}
+
+[class^=bg-],
+[class*=" bg-"] {
+  background-color: var(--_clr-bg);
+  color: var(--_clr-txt);
+}
+
+.bg-example {
+  --_clr-bg: #fff;
+  --_clr-txt: #000;
+}
+
+.flow > * + * {
+  margin-block-start: var(--_flow-gap, var(--space-400));
+}
+
+.flow-padding > * {
+  padding-block: var(--_flow-gap, var(--space-400));
+}
+
+[class^=flex-],
+[class*=" flex-"] {
+  display: flex;
+  gap: var(--_flex-gap, var(--space-400));
+}
+
+.flex-wrapper {
+  flex-direction: var(--_flex-direction, row);
+  width: min(var(--_max-wrapper-width, var(--max-width)), 100% - var(--_inline-wrapper-padding, var(--space-500)) * 2);
+  margin-inline: auto;
+}
+
+.flex-center {
+  flex-direction: var(--_flex-direction, column);
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-end {
+  flex-direction: var(--_flex-direction, row);
+  align-items: var(--_flex-align, center);
+  justify-content: flex-end;
+}
+
+.flex-space-between {
+  --_flex-gap: normal;
+  flex-direction: var(--_flex-direction, row);
+  align-items: var(--_flex-align, center);
+  justify-content: space-between;
+}
+
+.flex-space-around {
+  --_flex-gap: normal;
+  flex-direction: var(--_flex-direction, row);
+  align-items: var(--_flex-align, center);
+  justify-content: space-around;
+}
+
+[class^=grid-],
+[class*=" grid-"] {
+  display: grid;
+  gap: var(--_grid-gap, var(--space-400));
+}
+
+.grid-even-columns {
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--_min-column-width, calc(10 * var(--space-400))), 100%), 1fr));
+}
+
+@media (min-width: 50em) {
+  .grid-auto-flow {
+    grid-auto-flow: column;
+    grid-auto-rows: 1fr;
+  }
+}
+.grid-stack > * {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.grid-stack > img {
+  aspect-ratio: initial;
+  z-index: -1;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+h1 {
+  color: #901c1c;
+  margin-right: 100px;
+}
+
+.logo {
+  height: 50px;
+  margin-left: 100px;
+}
+
+.photographer_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+}
+
+.photographer_section article {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.photographer_section article h2 {
+  color: #d3573c;
+  font-size: 36px;
+}
+
+.photographer_section article img {
+  height: 200px;
+  width: 200px;
+}
+
+/*# sourceMappingURL=style.css.map */

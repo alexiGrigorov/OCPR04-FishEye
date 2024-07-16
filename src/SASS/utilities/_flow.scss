@@ -1,0 +1,11 @@
+.flow > * + * {
+  // --_flow-gap: var(--space-400);
+
+  margin-block-start: var(--_flow-gap, var(--space-400));
+}
+
+.flow-padding > * {
+  // --_flow-gap: var(--space-400);
+
+  padding-block: var(--_flow-gap, var(--space-400));
+}

@@ -1,0 +1,113 @@
+@use "sass:map";
+@use "sass:math";
+
+@mixin generateNeutralsFromValues($values) {
+  $prefix: "clr-neutral-";
+
+  @each $defaultValue in map.get($values, "defaults") {
+    $decValue: rangeToDec($defaultValue);
+    $hexValue: fromDectoHex($decValue);
+    --#{$prefix}#{$defaultValue}: #{"#" + $hexValue + $hexValue + $hexValue};
+  }
+
+  @each $customValue in map.get($values, "customs") {
+    $decValue: fromHexToDec($customValue);
+    $rangeValue: decToRange($decValue);
+    --#{$prefix}#{$rangeValue}: #{"#" +
+      $customValue +
+      $customValue +
+      $customValue};
+  }
+}
+
+@function fromDectoHex($number) {
+  // Ensure the number is within the 0-255 range
+  $number: min(255, max(0, $number));
+  // Define the hex characters for conversion
+  $hexChars: (
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  );
+  // Calculate the first and second hex characters
+  $firstChar: nth($hexChars, floor(math.div($number, 16)) + 1);
+  $secondChar: nth($hexChars, ($number % 16) + 1);
+  // Return the concatenated hex value
+  @return $firstChar + $secondChar;
+}
+
+@function fromHexToDec($hex) {
+  // Define the hex characters for conversion
+  $hexChars: (
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  );
+  // Split the hex string into its two characters
+  $firstChar: str-slice($hex, 1, 1);
+  $secondChar: str-slice($hex, 2, 2);
+  // Find the decimal value of each character
+  $firstValue: index($hexChars, $firstChar) - 1;
+  $secondValue: index($hexChars, $secondChar) - 1;
+  // Calculate the decimal value
+  @return ($firstValue * 16) + $secondValue;
+}
+
+@function decToRange($value) {
+  // Ensure the value is within the 0-255 range
+  $value: min(255, max(0, $value));
+  // Map the value from 0-255 to "-90"0
+  @return round(100 + ($value * (800 / 255)));
+}
+
+@function rangeToDec($value) {
+  // Ensure the value is within the 100-900 range
+  $value: min(900, max(100, $value));
+  // Map the value from 100-900 back to 0-255
+  @return round(($value - 100) * (255 / 800));
+}
+
+:root {
+  @include generateNeutralsFromValues(
+    (
+      "defaults": (
+        900,
+        800,
+        700,
+        600,
+        500,
+        400,
+        300,
+        200,
+        100,
+      ),
+      "customs": (),
+    )
+  );
+}

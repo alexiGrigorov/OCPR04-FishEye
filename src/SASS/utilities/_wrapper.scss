@@ -1,0 +1,21 @@
+.wrapper {
+  // --_max-wrapper-width: var(--max-width);
+  // --_inline-wrapper-padding: var(--space-500);
+
+  width: min(
+    var(--_max-wrapper-width, var(--max-width)),
+    100% - (var(--_inline-wrapper-padding, var(--space-500)) * 2)
+  );
+  margin-inline: auto;
+}
+
+.wrapper-p-width {
+  // --_max-wrapper-width: var(--p-max-width);
+  // --_inline-wrapper-padding: var(--space-300);
+
+  width: min(
+    var(--_max-wrapper-width, var(--p-max-width)),
+    100% - (var(--_inline-wrapper-padding, var(--space-300)) * 2)
+  );
+  margin-inline: auto;
+}

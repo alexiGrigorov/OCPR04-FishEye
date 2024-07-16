@@ -1,0 +1,12 @@
+.hidden {
+  display: none;
+}
+
+.cover {
+  position: absolute;
+  inset: 0;
+
+  :has(> &) {
+    position: relative;
+  }
+}

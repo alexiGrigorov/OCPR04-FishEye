@@ -1,19 +1,19 @@
 [class^="grid-"],
 [class*=" grid-"] {
-  // --_grid-gap: var(--space-400);
+  // --_grid-gap: var(--space-600);
 
   display: grid;
-  gap: var(--_grid-gap, var(--space-400));
+  gap: var(--_grid-gap, var(--space-600));
 }
 
 // creates a grid with even columns
 .grid-even-columns {
-  // --_min-column-width: calc(10 * var(--space-400));
+  // --_min-column-width: calc(10 * var(--space-600));
 
   grid-template-columns: repeat(
     auto-fit,
     minmax(
-      min(var(--_min-column-width, calc(10 * var(--space-400))), 100%),
+      min(var(--_min-column-width, calc(10 * var(--space-600))), 100%),
       1fr
     )
   );

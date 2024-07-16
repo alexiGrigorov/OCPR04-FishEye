@@ -2,15 +2,15 @@
   --min-width: 320px;
   --max-width: 1240px;
   --p-max-width: 65ch;
-  --fs-100: clamp(0.3704rem, 0.7487rem + -0.4881vi, 0.651rem);
-  --fs-200: clamp(0.5556rem, 0.8598rem + -0.3925vi, 0.7813rem);
-  --fs-300: clamp(0.8333rem, 0.9737rem + -0.1812vi, 0.9375rem);
+  --fs-100: clamp(0.64rem, 0.6549rem + -0.0192vi, 0.651rem);
+  --fs-200: clamp(0.7813rem, 0.7747rem + 0.0326vi, 0.8rem);
+  --fs-300: clamp(0.9375rem, 0.9158rem + 0.1087vi, 1rem);
   --fs-400: clamp(1.125rem, 1.0815rem + 0.2174vi, 1.25rem);
-  --fs-500: clamp(1.35rem, 1.1674rem + 0.913vi, 1.875rem);
-  --fs-600: clamp(1.62rem, 1.2052rem + 2.0739vi, 2.8125rem);
-  --fs-700: clamp(1.944rem, 1.1528rem + 3.9561vi, 4.2188rem);
-  --fs-800: clamp(2.3328rem, 0.9431rem + 6.9484vi, 6.3281rem);
-  --fs-900: clamp(2.7994rem, 0.4714rem + 11.6397vi, 9.4922rem);
+  --fs-500: clamp(1.35rem, 1.2761rem + 0.3696vi, 1.5625rem);
+  --fs-600: clamp(1.62rem, 1.5041rem + 0.5793vi, 1.9531rem);
+  --fs-700: clamp(1.944rem, 1.771rem + 0.8651vi, 2.4414rem);
+  --fs-800: clamp(2.3328rem, 2.0827rem + 1.2504vi, 3.0518rem);
+  --fs-900: clamp(2.7994rem, 2.4462rem + 1.7658vi, 3.8147rem);
   --space-100: clamp(0.0625rem, 0.0625rem + 0vi, 0.0625rem);
   --space-200: clamp(0.125rem, 0.1033rem + 0.1087vi, 0.1875rem);
   --space-300: clamp(0.3125rem, 0.3125rem + 0vi, 0.3125rem);
@@ -31,6 +31,37 @@
   --space-1800: clamp(72rem, 69.2174rem + 13.913vi, 80rem);
 }
 
+/*
+--fs-100: 10.25px - 10.4167px
+--fs-200: 12.5px - 13px
+--fs-300: 15px - 16px
+--fs-400: 18px - 20px
+--fs-500: 21.6px - 25px
+--fs-600: 25.92px - 31.25px
+--fs-700: 31.1px - 39.0625px
+--fs-800: 37.3px - 48.75px
+--fs-900: 44.79px - 61.03px
+*/
+/*
+--space-100: 1px - 1px
+--space-200: 2px - 3px
+--space-300: 5px - 5px
+--space-400: 9px - 10px
+--space-500: 14px - 15px
+--space-600: 18px - 20px
+--space-700: 27px - 30px
+--space-800: 36px - 40px
+--space-900: 54px - 60px
+--space-1000: 72px - 80px
+--space-1100: 108px - 120px
+--space-1200: 144px - 160px
+--space-1300: 216px - 240px
+--space-1400: 288px - 320px
+--space-1500: 432px - 480px
+--space-1600: 576px - 640px
+--space-1700: 864px - 960px
+--space-1800: 1152px - 1280px
+*/
 :root {
   --clr-neutral-900: #FFFFFF;
   --clr-neutral-800: #DFDFDF;
@@ -237,27 +268,27 @@ textarea:not([rows]) {
 }
 
 .wrapper {
-  width: min(var(--_max-wrapper-width, var(--max-width)), 100% - var(--_inline-wrapper-padding, var(--space-500)) * 2);
+  width: min(var(--_max-wrapper-width, var(--max-width)), 100% - var(--_inline-wrapper-padding, var(--space-600)) * 2);
   margin-inline: auto;
 }
 
 .wrapper-p-width {
-  width: min(var(--_max-wrapper-width, var(--p-max-width)), 100% - var(--_inline-wrapper-padding, var(--space-300)) * 2);
+  width: min(var(--_max-wrapper-width, var(--p-max-width)), 100% - var(--_inline-wrapper-padding, var(--space-600)) * 2);
   margin-inline: auto;
 }
 
 .flow > * + * {
-  margin-block-start: var(--_flow-gap, var(--space-400));
+  margin-block-start: var(--_flow-gap, var(--space-600));
 }
 
 .flow-padding > * {
-  padding-block: var(--_flow-gap, var(--space-400));
+  padding-block: var(--_flow-gap, var(--space-600));
 }
 
 [class^=flex-],
 [class*=" flex-"] {
   display: flex;
-  gap: var(--_flex-gap, var(--space-400));
+  gap: var(--_flex-gap, var(--space-600));
 }
 
 .flex-wrapper {
@@ -295,11 +326,11 @@ textarea:not([rows]) {
 [class^=grid-],
 [class*=" grid-"] {
   display: grid;
-  gap: var(--_grid-gap, var(--space-400));
+  gap: var(--_grid-gap, var(--space-600));
 }
 
 .grid-even-columns {
-  grid-template-columns: repeat(auto-fit, minmax(min(var(--_min-column-width, calc(10 * var(--space-400))), 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--_min-column-width, calc(10 * var(--space-600))), 100%), 1fr));
 }
 
 @media (min-width: 50em) {

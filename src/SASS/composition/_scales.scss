@@ -52,6 +52,7 @@
     map.get($config, "maxFontSize"),
     $viewport
   );
+
   @return $fontSize * math.pow($scale, $step);
 }
 
@@ -409,7 +410,7 @@ $typeScales: (
       "minFontSize": $minFontSize,
       "maxFontSize": $maxFontSize,
       "minTypeScale": map.get($typeScales, "minorThird"),
-      "maxTypeScale": map.get($typeScales, "perfectFifth"),
+      "maxTypeScale": map.get($typeScales, "majorThird"),
       "positiveSteps": 5,
       "negativeSteps": 3,
     )
@@ -446,3 +447,35 @@ $typeScales: (
     )
   );
 }
+
+/*
+--fs-100: 10.25px - 10.4167px
+--fs-200: 12.5px - 13px
+--fs-300: 15px - 16px
+--fs-400: 18px - 20px
+--fs-500: 21.6px - 25px
+--fs-600: 25.92px - 31.25px
+--fs-700: 31.1px - 39.0625px
+--fs-800: 37.3px - 48.75px
+--fs-900: 44.79px - 61.03px
+*/
+/*
+--space-100: 1px - 1px
+--space-200: 2px - 3px
+--space-300: 5px - 5px
+--space-400: 9px - 10px
+--space-500: 14px - 15px
+--space-600: 18px - 20px
+--space-700: 27px - 30px
+--space-800: 36px - 40px
+--space-900: 54px - 60px
+--space-1000: 72px - 80px
+--space-1100: 108px - 120px
+--space-1200: 144px - 160px
+--space-1300: 216px - 240px
+--space-1400: 288px - 320px
+--space-1500: 432px - 480px
+--space-1600: 576px - 640px
+--space-1700: 864px - 960px
+--space-1800: 1152px - 1280px
+*/

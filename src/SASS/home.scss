@@ -1,25 +1,7 @@
-@use "blocks";
+@use "blocks/home";
 @use "exceptions";
 
-@import url("photographer.css");
-
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 90px;
-}
-
-h1 {
-  color: #901c1c;
-  margin-right: 100px;
-}
-
-.logo {
-  height: 50px;
-  margin-left: 100px;
-}
+// @import url("photographer.css");
 
 .photographer_section {
   display: grid;

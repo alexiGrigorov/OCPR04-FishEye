@@ -13,28 +13,36 @@
     <script src="./src/scripts/pages/home.mjs" defer type="module"></script>
     <title>Fisheye</title>
   </head>
-  <body>
-    <header>
-      <img
-        src="assets/images//fisheye/logo.png"
-        class="logo"
-        alt="fisheye logo"
-      />
+  <body class="[ wrapper ]">
+    <a class="skip-nav" href="#main">Passer au contenu principal </a>
+    <header class="[ flex-space-between ]">
+      <a href="./index.html">
+        <img
+          class="logo"
+          src="assets/images//fisheye/logo.png"
+          alt="Fisheye Home page"
+        />
+      </a>
+
       <h1>Nos photographes</h1>
     </header>
     <main id="main">
-      <div id="featured-photographers" class="featured-photographers">
+      <div
+        id="featured-photographers"
+        class="featured-photographers [ grid-even-columns ]"
+      >
         <template id="photographer-preview-template">
           <article class="photographer-preview">
             <section class="presentation">
-              <img id="portrait" src="" alt="" />
-              <h2 id="name"></h2>
-              <a id="link" href="./photographer.html"></a>
+              <a id="link" href="./photographer.html"
+                ><img class="portrait" id="portrait" src="" />
+                <h2 class="name" id="name"></h2
+              ></a>
             </section>
             <section class="info">
-              <p id="location"></p>
-              <p id="tagline"></p>
-              <p id="price"></p>
+              <p class="location" id="location"></p>
+              <p class="tagline" id="tagline"></p>
+              <p class="price" id="price"></p>
             </section>
           </article>
         </template>

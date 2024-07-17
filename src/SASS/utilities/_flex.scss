@@ -38,7 +38,7 @@
 
 .flex-space-between {
   // --_flex-direction: row;
-  // --_flex-direction: row;
+  // --_flex-align: row;
   --_flex-gap: normal;
 
   flex-direction: var(--_flex-direction, row);

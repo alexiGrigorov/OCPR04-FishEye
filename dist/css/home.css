@@ -1,20 +1,41 @@
-@import url("photographer.css");
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 90px;
+.featured-photographers {
+  --_grid-gap: var(--space-1100);
+  row-gap: var(--space-1000);
+  --_min-column-width: var(--space-1400);
+  justify-items: center;
 }
 
-h1 {
-  color: #901c1c;
-  margin-right: 100px;
+.photographer-preview > * {
+  text-align: center;
 }
 
-.logo {
-  height: 50px;
-  margin-left: 100px;
+.presentation a {
+  text-decoration: none;
+}
+.presentation .portrait {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.presentation .name {
+  font-size: var(--fs-700);
+  color: var(--clr-secondary);
+}
+
+.info .location {
+  font-size: var(--fs-300);
+  color: var(--clr-primary);
+}
+.info .tagline {
+  font-size: var(--fs-200);
+  color: var(--clr-neutral-100);
+}
+.info .price {
+  font-size: var(--fs-100);
+  color: var(--clr-neutral-467);
 }
 
 .photographer_section {

@@ -8,14 +8,11 @@
 
 // creates a grid with even columns
 .grid-even-columns {
-  // --_min-column-width: calc(10 * var(--space-600));
+  // --_min-column-width: var(--space-1200);
 
   grid-template-columns: repeat(
     auto-fit,
-    minmax(
-      min(var(--_min-column-width, calc(10 * var(--space-600))), 100%),
-      1fr
-    )
+    minmax(min(var(--_min-column-width, var(--space-1200)), 100%), 1fr)
   );
 }
 

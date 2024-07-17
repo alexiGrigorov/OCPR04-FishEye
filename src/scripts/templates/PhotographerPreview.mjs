@@ -9,20 +9,32 @@ export default class PhotographerPreview {
     this.#photographerPreveiwElement =
       PhotographerPreview.#template.content.cloneNode(true);
 
-    this.#photographerPreveiwElement.getElementById("portrait").src =
-      this.#data.portrait;
-    this.#photographerPreveiwElement.getElementById("portrait").alt =
-      this.#data.name;
+    const link = this.#photographerPreveiwElement.getElementById("link");
+    link.href += `?id=${this.#data.id}`;
+    link.removeAttribute("id");
 
-    this.#photographerPreveiwElement.getElementById("name").textContent =
-      this.#data.name;
+    const portrait =
+      this.#photographerPreveiwElement.getElementById("portrait");
+    portrait.src = this.#data.portrait;
+    portrait.alt = this.#data.name;
+    portrait.removeAttribute("id");
 
-    this.#photographerPreveiwElement.getElementById("location").textContent =
-      this.#data.location;
-    this.#photographerPreveiwElement.getElementById("tagline").textContent =
-      this.#data.tagline;
-    this.#photographerPreveiwElement.getElementById("price").textContent =
-      this.#data.price;
+    const name = this.#photographerPreveiwElement.getElementById("name");
+    name.textContent = this.#data.name;
+    name.removeAttribute("id");
+
+    const location =
+      this.#photographerPreveiwElement.getElementById("location");
+    location.textContent = this.#data.location;
+    location.removeAttribute("id");
+
+    const tagline = this.#photographerPreveiwElement.getElementById("tagline");
+    tagline.textContent = this.#data.tagline;
+    tagline.removeAttribute("id");
+
+    const price = this.#photographerPreveiwElement.getElementById("price");
+    price.textContent = this.#data.price;
+    price.removeAttribute("id");
   }
 
   appendTo(parentElement) {

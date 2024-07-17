@@ -1,0 +1,49 @@
+@use "./../composition/breakpoints" as breakpoints;
+
+.skip-nav {
+  position: absolute;
+  top: 0;
+  border-end-start-radius: var(--space-300);
+  border-end-end-radius: var(--space-300);
+  padding-block: var(--space-300);
+  padding-inline: var(--space-400);
+  font-size: var(--fs-200);
+  color: var(--clr-neutral-900);
+  background-color: var(--clr-primary);
+  text-decoration: none;
+  transform: translateY(-120%);
+  transition: transform 0.15s ease-in;
+
+  &:focus {
+    transform: translateY(0);
+    color: var(--clr--neutral-100);
+    background-color: var(--clr-focus);
+  }
+}
+
+header {
+  margin-block-start: var(--space-800);
+  margin-block-end: var(--space-1100);
+  margin-inline: var(--space-1000);
+}
+
+.logo {
+  width: var(--space-1300);
+}
+
+h1 {
+  font-size: var(--fs-700);
+  color: var(--clr-primary);
+}
+
+@media (max-width: breakpoints.$header-bp) {
+  header {
+    --_flex-direction: column;
+    margin-inline: var(--space-600);
+    text-align: center;
+  }
+
+  h1 {
+    margin-top: var(--space-400);
+  }
+}

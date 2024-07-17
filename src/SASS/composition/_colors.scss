@@ -94,6 +94,7 @@
 }
 
 :root {
+  // Palette
   @include generateNeutralsFromValues(
     (
       "defaults": (
@@ -109,11 +110,14 @@
       ),
       "customs": (
         "52",
+        "75",
+        "C4",
         "FA",
       ),
     )
   );
 
-  --clr-brand-900: #901c1c;
-  --clr-brand-100: #d3573c;
+  --clr-primary: #901c1c;
+  --clr-secondary: #d3573c;
+  --clr-focus: #db8876;
 }

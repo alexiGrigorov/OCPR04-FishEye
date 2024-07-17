@@ -17,16 +17,23 @@
     ></script>
     <title>Fisheye - photographe</title>
   </head>
-  <body>
-    <header>
-      <img src="assets/images/fisheye/logo.png" class="logo" />
+  <body class="[ wrapper ]">
+    <a class="skip-nav" href="#main">Passer au contenu principal </a>
+    <header class="[ flex-space-between ]">
+      <a href="./index.html">
+        <img
+          class="logo"
+          src="assets/images//fisheye/logo.png"
+          alt="Fisheye Home page"
+        />
+      </a>
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <section class="photograph-header">
         <button class="contact_button" onclick="displayModal()">
           Contactez-moi
         </button>
-      </div>
+      </section>
     </main>
     <div id="contact_modal">
       <div class="modal">
@@ -43,7 +50,5 @@
         </form>
       </div>
     </div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

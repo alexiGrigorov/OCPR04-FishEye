@@ -29,6 +29,8 @@
   --space-1600: clamp(36rem, 34.6087rem + 6.9565vi, 40rem);
   --space-1700: clamp(54rem, 51.913rem + 10.4348vi, 60rem);
   --space-1800: clamp(72rem, 69.2174rem + 13.913vi, 80rem);
+  --space-1000-1100: clamp(4.5rem, 3.4565rem + 5.2174vi, 7.5rem);
+  --space-1100-1400: clamp(6.75rem, 2.1413rem + 23.0435vi, 20rem);
 }
 
 /*
@@ -82,8 +84,8 @@
 }
 
 @font-face {
-  font-family: "project-icons";
-  src: url("../../../assets/fonts/icons/project-icons.ttf") format("truetype");
+  font-family: "Project Icons";
+  src: url("../../../assets/fonts/icons/Project-Icons.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -126,7 +128,7 @@
 }
 :root {
   --ff-sans: "DM Sans", Arial, Helvetica, sans-serif;
-  --ff-icons: "project-icons";
+  --ff-icons: "Project Icons";
 }
 
 /* Box sizing rules */
@@ -258,6 +260,34 @@ textarea:not([rows]) {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-camera:before {
+  content: "\e900";
+}
+
+.icon-heart:before {
+  content: "\e901";
+}
+
+.icon-xmark:before {
+  content: "\e902";
+}
+
+.icon-chevron-up:before {
+  content: "\e903";
+}
+
+.icon-chevron-down:before {
+  content: "\e904";
+}
+
+.icon-chevron-left:before {
+  content: "\e905";
+}
+
+.icon-chevron-right:before {
+  content: "\e906";
+}
+
 .hidden {
   display: none;
 }
@@ -379,7 +409,7 @@ header {
 }
 
 .logo {
-  width: var(--space-1300);
+  width: var(--space-1100-1400);
 }
 
 h1 {

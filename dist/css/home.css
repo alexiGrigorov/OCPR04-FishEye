@@ -1,12 +1,17 @@
 .featured-photographers {
-  --_grid-gap: var(--space-1100);
+  --_grid-gap: var(--space-1000-1100);
   row-gap: var(--space-1000);
-  --_min-column-width: var(--space-1400);
+  --_min-column-width: var(--space-1100-1400);
   justify-items: center;
+  grid-auto-rows: auto auto;
 }
 
-.photographer-preview > * {
+.photographer-preview {
   text-align: center;
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: subgrid;
+  gap: 0;
 }
 
 .presentation a {
@@ -36,31 +41,6 @@
 .info .price {
   font-size: var(--fs-100);
   color: var(--clr-neutral-467);
-}
-
-.photographer_section {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
-  margin-top: 100px;
-}
-
-.photographer_section article {
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.photographer_section article h2 {
-  color: #d3573c;
-  font-size: 36px;
-}
-
-.photographer_section article img {
-  height: 200px;
-  width: 200px;
 }
 
 /*# sourceMappingURL=home.css.map */

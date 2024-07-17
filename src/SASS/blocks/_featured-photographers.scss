@@ -1,12 +1,18 @@
 .featured-photographers {
-  --_grid-gap: var(--space-1100);
+  --_grid-gap: var(--space-1000-1100);
   row-gap: var(--space-1000);
-  --_min-column-width: var(--space-1400);
+  --_min-column-width: var(--space-1100-1400);
   justify-items: center;
+
+  grid-auto-rows: auto auto;
 }
 
-.photographer-preview > * {
+.photographer-preview {
   text-align: center;
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: subgrid;
+  gap: 0;
 }
 
 .presentation {

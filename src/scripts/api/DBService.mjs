@@ -1,7 +1,7 @@
 import DataModelPhotographer from "../models/Photographer.mjs";
 import DataModelMediaFactory from "../models/Media.mjs";
 
-export default class DataProvider {
+export default class DBService {
   static #url = "./../../../db/photographers.json";
   static #singleton;
 
@@ -10,10 +10,10 @@ export default class DataProvider {
   #medias;
 
   constructor() {
-    if (DataProvider.#singleton) {
-      return DataProvider.#singleton;
+    if (DBService.#singleton) {
+      return DBService.#singleton;
     }
-    DataProvider.#singleton = this;
+    DBService.#singleton = this;
 
     if (
       sessionStorage.getItem("rawData") &&
@@ -33,7 +33,7 @@ export default class DataProvider {
     let rawData;
 
     try {
-      const response = await fetch(DataProvider.#url);
+      const response = await fetch(DBService.#url);
       rawData = await response.json();
     } catch (error) {
       throw new Error(error);

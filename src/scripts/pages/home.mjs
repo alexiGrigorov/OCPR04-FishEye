@@ -1,7 +1,7 @@
-import DataProvider from "../api/DataProvider.mjs";
+import DBService from "../api/DBService.mjs";
 import FeaturedPhotographers from "../containers/FeaturedPhotographers.mjs";
 
-class App {
+class Home {
   #dataProvider;
   #featuredPhotographers;
 
@@ -17,5 +17,5 @@ class App {
   }
 }
 
-const app = new App(new DataProvider(), new FeaturedPhotographers());
-app.init();
+const home = new Home(new DBService(), new FeaturedPhotographers());
+home.init();

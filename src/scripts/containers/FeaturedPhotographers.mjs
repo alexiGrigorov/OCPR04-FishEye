@@ -5,25 +5,30 @@ export default class FeaturedPhotographers {
     "featured-photographers"
   );
 
-  #photographersData;
-  #photographersPreviews = [];
+  #featuredPhotographers = [];
 
   constructors() {}
 
-  init(photographersData) {
-    this.#photographersData = photographersData;
-    this.#photographersData.forEach((photographerData) =>
-      this.#photographersPreviews.push(
-        new PhotographerPreview(photographerData)
-      )
+  addPhotographer(photographerData) {
+    const featuredPhotographer = new PhotographerPreview(photographerData);
+    this.#featuredPhotographers.push(featuredPhotographer);
+    featuredPhotographer.appendTo(
+      FeaturedPhotographers.#featuredPhotographersElement
     );
   }
 
-  displayPhotographers() {
-    this.#photographersPreviews.forEach((photographerPreview) =>
-      photographerPreview.appendTo(
-        FeaturedPhotographers.#featuredPhotographersElement
-      )
+  removePhotographer(id) {
+    const photographer = this.#featuredPhotographers.find(
+      (photographer) => photographer.id === id
     );
+
+    if (!photographer) {
+      throw new Error(`Photographer with id ${id} not found`);
+    }
+
+    const index = this.#featuredPhotographers.indexOf(photographer);
+    this.#featuredPhotographers.splice(index, 1);
+
+    photographer.remove();
   }
 }

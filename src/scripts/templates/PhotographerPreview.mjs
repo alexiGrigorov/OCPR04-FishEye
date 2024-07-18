@@ -2,42 +2,53 @@ export default class PhotographerPreview {
   static #template = document.getElementById("photographer-preview-template");
 
   #data;
+  #photographerPreveiwFilledTemplate;
   #photographerPreveiwElement;
+
+  id;
 
   constructor(data) {
     this.#data = data;
-    this.#photographerPreveiwElement =
+    this.id = data.id;
+    const filledTemplate =
       PhotographerPreview.#template.content.cloneNode(true);
 
-    const link = this.#photographerPreveiwElement.getElementById("link");
+    const link = filledTemplate.getElementById("link");
     link.href += `?id=${this.#data.id}`;
     link.removeAttribute("id");
 
-    const portrait =
-      this.#photographerPreveiwElement.getElementById("portrait");
+    const portrait = filledTemplate.getElementById("portrait");
     portrait.src = this.#data.portrait;
     portrait.alt = this.#data.name;
     portrait.removeAttribute("id");
 
-    const name = this.#photographerPreveiwElement.getElementById("name");
+    const name = filledTemplate.getElementById("name");
     name.textContent = this.#data.name;
     name.removeAttribute("id");
 
-    const location =
-      this.#photographerPreveiwElement.getElementById("location");
+    const location = filledTemplate.getElementById("location");
     location.textContent = this.#data.location;
     location.removeAttribute("id");
 
-    const tagline = this.#photographerPreveiwElement.getElementById("tagline");
+    const tagline = filledTemplate.getElementById("tagline");
     tagline.textContent = this.#data.tagline;
     tagline.removeAttribute("id");
 
-    const price = this.#photographerPreveiwElement.getElementById("price");
+    const price = filledTemplate.getElementById("price");
     price.textContent = this.#data.price;
     price.removeAttribute("id");
+
+    this.#photographerPreveiwFilledTemplate = filledTemplate;
   }
 
   appendTo(parentElement) {
-    parentElement.append(this.#photographerPreveiwElement);
+    parentElement.append(
+      this.#photographerPreveiwFilledTemplate.cloneNode(true)
+    );
+    this.#photographerPreveiwElement = parentElement.lastElementChild;
+  }
+
+  remove() {
+    this.#photographerPreveiwElement.remove();
   }
 }

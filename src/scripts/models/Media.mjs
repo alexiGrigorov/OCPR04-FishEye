@@ -1,12 +1,10 @@
 export default class DataModelMediaFactory {
-  constructor(photographers) {
-    this.photographers = photographers;
-  }
-  create(rawData) {
-    const photographer = this.photographers.find(
+  constructor(rawData, photographers) {
+    const mediaPhotographer = photographers.find(
       (photographer) => photographer.id === rawData.photographerId
     );
-    const firstName = photographer.name.split(" ")[0];
+    const firstName = mediaPhotographer.name.split(" ")[0];
+
     if ("image" in rawData) {
       return new DataModelImage(rawData, firstName);
     }

@@ -1,20 +1,20 @@
 import PhotographerPreview from "../templates/PhotographerPreview.mjs";
 
 export default class FeaturedPhotographers {
-  static #featuredPhotographersElement = document.getElementById(
-    "featured-photographers"
-  );
-
   #featuredPhotographers = [];
 
   constructors() {}
 
+  init(photographersData) {
+    photographersData.forEach((photographerData) => {
+      this.addPhotographer(photographerData);
+    });
+  }
+
   addPhotographer(photographerData) {
     const featuredPhotographer = new PhotographerPreview(photographerData);
     this.#featuredPhotographers.push(featuredPhotographer);
-    featuredPhotographer.appendTo(
-      FeaturedPhotographers.#featuredPhotographersElement
-    );
+    featuredPhotographer.append();
   }
 
   removePhotographer(id) {

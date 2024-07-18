@@ -29,10 +29,75 @@
       </a>
     </header>
     <main id="main">
-      <section class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
+      <section class="photographer-details">
+        <template id="photographer-identity-template">
+          <div>
+            <h2 class="name" id="name"></h2>
+            <p class="location" id="location"></p>
+            <p class="tagline" id="tagline"></p>
+          </div>
+        </template>
+        <template id="photographer-contact-template">
+          <button class="contact_button" onclick="displayModal()">
+            Contactez-moi
+          </button>
+          <dialog id="contact-modal" class="contact-modal">
+            <div>
+              <h3>
+                Contactez-moi <br />
+                <span class="name" id="name"></span>
+              </h3>
+              <button class="close-modal [ icon-xmark ]"></button>
+            </div>
+            <form action="">
+              <fieldset class="formData">
+                <label for="first">Prénom</label>
+                <input
+                  type="text"
+                  id="first"
+                  name="first"
+                  minlength="2"
+                  pattern="^[\p{L} \-]+$"
+                  required
+                />
+              </fieldset>
+              <fieldset class="formData">
+                <label for="last">Nom</label>
+                <input
+                  type="text"
+                  id="last"
+                  name="last"
+                  minlength="2"
+                  pattern="^[\p{L} \-]+$"
+                  required
+                />
+              </fieldset>
+              <fieldset class="formData">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                  required
+                />
+              </fieldset>
+              <fieldset class="formData">
+                <label for="message">Votre message</label>
+                <textarea name="message" id="message"></textarea>
+              </fieldset>
+              <input
+                id="btn-submit"
+                class="btn-submit"
+                type="submit"
+                value="Envoyer"
+              />
+            </form>
+          </dialog>
+        </template>
+        <template id="photographer-portrait-template">
+          <img class="portrait" id="portrait" src="" />
+        </template>
       </section>
     </main>
     <div id="contact_modal">

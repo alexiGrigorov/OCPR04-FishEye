@@ -41,11 +41,12 @@ export default class PhotographerPreview {
     this.#photographerPreveiwFilledTemplate = filledTemplate;
   }
 
-  appendTo(parentElement) {
-    parentElement.append(
+  append() {
+    PhotographerPreview.#template.parentElement.append(
       this.#photographerPreveiwFilledTemplate.cloneNode(true)
     );
-    this.#photographerPreveiwElement = parentElement.lastElementChild;
+    this.#photographerPreveiwElement =
+      PhotographerPreview.#template.parentElement.lastElementChild;
   }
 
   remove() {

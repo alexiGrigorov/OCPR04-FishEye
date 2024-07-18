@@ -11,9 +11,7 @@ class Home {
   }
   async init() {
     const photographers = await this.#dataProvider.getPhotographers();
-    photographers.forEach((photographer) => {
-      this.#featuredPhotographers.addPhotographer(photographer);
-    });
+    this.#featuredPhotographers.init(photographers);
   }
 }
 

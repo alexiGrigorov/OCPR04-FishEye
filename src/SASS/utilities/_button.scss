@@ -1,0 +1,24 @@
+[class*="-button"] {
+  display: inline-block;
+  border-radius: var(--space-300);
+  border-style: none;
+  padding-block: var(--space-600);
+  padding-inline: var(--space-400);
+  background-color: var(--clr-primary);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-700);
+  color: var(--clr-neutral-900);
+  text-align: center;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: var(--clr-secondary);
+    color: var(--clr-neutral-100);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

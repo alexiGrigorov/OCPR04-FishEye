@@ -1,4 +1,6 @@
 .featured-photographers {
+  margin-block-start: var(--space-1100);
+
   --_grid-gap: var(--space-1000-1100);
   row-gap: var(--space-1000);
   --_min-column-width: var(--space-1100-1400);

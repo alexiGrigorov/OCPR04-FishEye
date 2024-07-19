@@ -1,29 +1,30 @@
 import FishEyeDataProvider from "../addapters/FishEyeDataProvider.mjs";
-import PhotographerHeader from "../templates/PhotographerHeader.mjs";
+import PhotographerDetails from "../containers/PhotographerDetails.mjs";
 
 class Photographer {
-  #photographer;
+  #photographerId;
   #dataProvider;
-  #photographerHeader;
+  #photographerDetails;
 
   constructor() {
-    const photographerId = new URLSearchParams(window.location.search).get(
-      "id"
+    this.#photographerId = Number.parseInt(
+      new URLSearchParams(window.location.search).get("id")
     );
-    if (! photographerId) {
+    if (!this.#photographerId) {
       window.location.replace("./");
     }
     this.#dataProvider = new FishEyeDataProvider();
+    this.#photographerDetails = new PhotographerDetails();
+  }
+
+  async init() {
     const photographers = await this.#dataProvider.getPhotographers();
     const photographer = photographers.find(
-      (photographer) => photographer.id === photographerId
+      (photographer) => photographer.id === this.#photographerId
     );
-    this.#photographerHeader = new PhotographerHeader();
-  }
-  init() {
-    this.#photographerHeader.render(this.#photographer);
+    this.#photographerDetails.init(photographer);
   }
 }
 
-const photographer = new Photographer();
-photographer.init();
+const photographerPage = new Photographer();
+photographerPage.init();

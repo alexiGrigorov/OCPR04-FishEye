@@ -11,6 +11,8 @@
   --fs-700: clamp(1.944rem, 1.771rem + 0.8651vi, 2.4414rem);
   --fs-800: clamp(2.3328rem, 2.0827rem + 1.2504vi, 3.0518rem);
   --fs-900: clamp(2.7994rem, 2.4462rem + 1.7658vi, 3.8147rem);
+  --fs-1000: clamp(3.3592rem, 2.8691rem + 2.4507vi, 4.7684rem);
+  --fs-1100: clamp(4.0311rem, 3.36rem + 3.3555vi, 5.9605rem);
   --space-100: clamp(0.0625rem, 0.0625rem + 0vi, 0.0625rem);
   --space-200: clamp(0.125rem, 0.1033rem + 0.1087vi, 0.1875rem);
   --space-300: clamp(0.3125rem, 0.3125rem + 0vi, 0.3125rem);
@@ -43,6 +45,8 @@
 --fs-700: 31.1px - 39.0625px
 --fs-800: 37.3px - 48.75px
 --fs-900: 44.79px - 61.03px
+--fs-1000: 43.99px - 59.61px
+--fs-1100: 52.4px - 69.5px
 */
 /*
 --space-100: 1px - 1px
@@ -382,6 +386,27 @@ textarea:not([rows]) {
   z-index: -1;
 }
 
+[class*=-button] {
+  display: inline-block;
+  border-radius: var(--space-300);
+  border-style: none;
+  padding-block: var(--space-600);
+  padding-inline: var(--space-400);
+  background-color: var(--clr-primary);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-700);
+  color: var(--clr-neutral-900);
+  text-align: center;
+  cursor: pointer;
+}
+[class*=-button]:hover, [class*=-button]:focus {
+  background-color: var(--clr-secondary);
+  color: var(--clr-neutral-100);
+}
+[class*=-button]:active {
+  transform: scale(0.98);
+}
+
 .skip-nav {
   position: absolute;
   top: 0;
@@ -403,8 +428,7 @@ textarea:not([rows]) {
 }
 
 header {
-  margin-block-start: var(--space-800);
-  margin-block-end: var(--space-1100);
+  margin-block: var(--space-800);
   margin-inline: var(--space-1000);
 }
 

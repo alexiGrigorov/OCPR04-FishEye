@@ -3,7 +3,7 @@ import PhotographerPreview from "../templates/PhotographerPreview.mjs";
 export default class FeaturedPhotographers {
   #featuredPhotographers = [];
 
-  constructors() {}
+  constructor() {}
 
   init(photographersData) {
     photographersData.forEach((photographerData) => {

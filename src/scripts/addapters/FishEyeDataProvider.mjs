@@ -1,7 +1,7 @@
 import DBService from "../api/DBService.mjs";
 import CachingService from "../cache/CachingService.mjs";
-import DataModelPhotographer from "../models/Photographer.mjs";
-import DataModelMediaFactory from "../models/Media.mjs";
+import DataModelPhotographer from "../models/DataModelPhotographer.mjs";
+import DataModelMediaFactory from "../models/DataModelMedia.mjs";
 
 export default class FishEyeDataProvider {
   static #singleton;

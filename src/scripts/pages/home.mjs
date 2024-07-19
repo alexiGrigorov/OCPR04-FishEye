@@ -15,5 +15,5 @@ class Home {
   }
 }
 
-const home = new Home();
-home.init();
+const homePage = new Home();
+homePage.init();

@@ -1,4 +1,4 @@
-import FishEyeDataProvider from "../addapters/FishEyeDataProvider.mjs";
+import FishEyeDataProvider from "../api/FishEyeDataProvider.mjs";
 import FeaturedPhotographers from "../containers/FeaturedPhotographers.mjs";
 
 class Home {

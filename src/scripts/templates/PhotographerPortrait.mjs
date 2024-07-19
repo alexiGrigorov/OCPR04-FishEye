@@ -23,7 +23,7 @@ export default class PhotographerPortrait {
 
   append() {
     PhotographerPortrait.#template.parentElement.append(
-      this.#photographerPortraitFilledTemplate.cloneNode(true)
+      this.#photographerPortraitFilledTemplate
     );
     this.#photographerPortraitElement =
       PhotographerPortrait.#template.parentElement.lastElementChild;

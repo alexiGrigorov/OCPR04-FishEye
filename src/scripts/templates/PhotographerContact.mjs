@@ -1,9 +1,13 @@
+import ModalContainerService from "../services/ModalContainerService.mjs";
+
 export default class PhotographerContact {
   static #template = document.getElementById("photographer-contact-template");
 
   #data;
   #photographerContactFilledTemplate;
   #photographerContactElement;
+
+  #ModalContainerService;
 
   id;
 
@@ -13,14 +17,25 @@ export default class PhotographerContact {
     const filledTemplate =
       PhotographerContact.#template.content.cloneNode(true);
 
-    //   fill the template
+    const modal = filledTemplate.getElementById("modal");
+    const openModalButton = filledTemplate.getElementById("open-modal-button");
+    this.#ModalContainerService = new ModalContainerService(
+      modal,
+      openModalButton
+    );
+    modal.removeAttribute("id");
+    openModalButton.removeAttribute("id");
+
+    const name = filledTemplate.getElementById("name");
+    name.textContent = this.#data.name;
+    name.removeAttribute("id");
 
     this.#photographerContactFilledTemplate = filledTemplate;
   }
 
   append() {
     PhotographerContact.#template.parentElement.append(
-      this.#photographerContactFilledTemplate.cloneNode(true)
+      this.#photographerContactFilledTemplate
     );
     this.#photographerContactElement =
       PhotographerContact.#template.parentElement.lastElementChild;

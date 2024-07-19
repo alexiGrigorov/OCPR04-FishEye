@@ -30,7 +30,7 @@ export default class PhotographerIdentity {
 
   append() {
     PhotographerIdentity.#template.parentElement.append(
-      this.#photographerIdentityFilledTemplate.cloneNode(true)
+      this.#photographerIdentityFilledTemplate
     );
     this.#photographerIdentityElement =
       PhotographerIdentity.#template.parentElement.lastElementChild;
@@ -38,5 +38,9 @@ export default class PhotographerIdentity {
 
   remove() {
     this.#photographerIdentityElement.remove();
+  }
+
+  openModal() {
+    this.#photographerIdentityElement.showModal();
   }
 }

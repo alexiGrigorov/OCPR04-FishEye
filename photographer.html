@@ -38,16 +38,19 @@
           </div>
         </template>
         <template id="photographer-contact-template">
-          <button class="contact-button" onclick="displayModal()">
+          <button id="open-modal-button" class="contact-button">
             Contactez-moi
           </button>
-          <dialog id="contact-modal" class="contact-modal">
+          <dialog id="modal" class="contact-modal">
             <div>
               <h3>
                 Contactez-moi <br />
                 <span class="name" id="name"></span>
               </h3>
-              <button class="close-modal [ icon-xmark ]"></button>
+              <button
+                id="close-modal-button"
+                class="close-button [ icon-xmark ]"
+              ></button>
             </div>
             <form action="">
               <fieldset class="formData">
@@ -100,20 +103,5 @@
         </template>
       </section>
     </main>
-    <div id="contact_modal">
-      <div class="modal">
-        <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-        <form>
-          <div>
-            <label>Prénom</label>
-            <input />
-          </div>
-          <button class="contact_button">Envoyer</button>
-        </form>
-      </div>
-    </div>
   </body>
 </html>

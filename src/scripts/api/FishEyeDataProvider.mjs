@@ -1,5 +1,5 @@
-import DBService from "../api/DBService.mjs";
-import CachingService from "../cache/CachingService.mjs";
+import DBService from "../services/DBService.mjs";
+import CachingService from "../services/CachingService.mjs";
 import DataModelPhotographer from "../models/DataModelPhotographer.mjs";
 import DataModelMediaFactory from "../models/DataModelMedia.mjs";
 

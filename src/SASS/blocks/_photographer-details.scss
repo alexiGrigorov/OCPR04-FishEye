@@ -1,3 +1,5 @@
+@use "./../composition/breakpoints" as breakpoints;
+
 .photographer-details {
   padding-block: var(--space-900);
   padding-inline: var(--space-800);
@@ -28,9 +30,68 @@
   & .portrait {
     place-self: center end;
     width: 100%;
-    max-width: 200px;
+    max-width: var(--space-1300);
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
+  }
+}
+
+@media (max-width: breakpoints.$photographer-details-bp-1) {
+  .photographer-details {
+    grid-template-columns: none;
+    grid-template-areas:
+      "identity portrait"
+      "identity contact";
+
+    gap: var(--space-600);
+
+    & .identity {
+      grid-area: identity;
+      place-self: center start;
+    }
+
+    & .name {
+      font-size: var(--fs-900);
+    }
+
+    & .portrait {
+      grid-area: portrait;
+    }
+
+    & .contact-button {
+      grid-area: contact;
+      place-self: center;
+      padding-block: var(--space-500);
+      padding-inline: var(--space-400);
+      font-size: var(--fs-400);
+      font-weight: var(--fw-600);
+    }
+  }
+}
+
+@media (max-width: breakpoints.$photographer-details-bp-2) {
+  .photographer-details {
+    & .name {
+      font-size: var(--fs-700);
+    }
+
+    & .location {
+      font-size: var(--fs-400);
+    }
+
+    & .tagline {
+      font-size: var(--fs-400);
+    }
+
+    & .contact-button {
+      padding-block: var(--space-400);
+      font-weight: var(--fw-500);
+      place-self: end;
+    }
+
+    & .portrait {
+      max-width: var(--space-1200);
+    }
   }
 }

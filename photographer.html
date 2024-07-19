@@ -31,7 +31,7 @@
     <main id="main">
       <section class="photographer-details">
         <template id="photographer-identity-template">
-          <div>
+          <div class="identity">
             <h2 class="name" id="name"></h2>
             <p class="location" id="location"></p>
             <p class="tagline" id="tagline"></p>
@@ -42,56 +42,48 @@
             Contactez-moi
           </button>
           <dialog id="modal" class="contact-modal">
-            <div>
+            <div class="modal-header">
               <h3>
                 Contactez-moi <br />
-                <span class="name" id="name"></span>
+                <span id="name"></span>
               </h3>
               <button
                 id="close-modal-button"
                 class="close-button [ icon-xmark ]"
               ></button>
             </div>
-            <form action="">
-              <fieldset class="formData">
-                <label for="first">Prénom</label>
-                <input
-                  type="text"
-                  id="first"
-                  name="first"
-                  minlength="2"
-                  pattern="^[\p{L} \-]+$"
-                  required
-                />
-              </fieldset>
-              <fieldset class="formData">
-                <label for="last">Nom</label>
-                <input
-                  type="text"
-                  id="last"
-                  name="last"
-                  minlength="2"
-                  pattern="^[\p{L} \-]+$"
-                  required
-                />
-              </fieldset>
-              <fieldset class="formData">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                  required
-                />
-              </fieldset>
-              <fieldset class="formData">
-                <label for="message">Votre message</label>
-                <textarea name="message" id="message"></textarea>
-              </fieldset>
+            <form class="[ flow ]" action="">
+              <label for="first">Prénom</label>
               <input
-                id="btn-submit"
-                class="btn-submit"
+                type="text"
+                id="first"
+                name="first"
+                minlength="2"
+                pattern="^[\p{L} \-]+$"
+                required
+              />
+              <label for="last">Nom</label>
+              <input
+                type="text"
+                id="last"
+                name="last"
+                minlength="2"
+                pattern="^[\p{L} \-]+$"
+                required
+              />
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                required
+              />
+              <label for="message">Votre message</label>
+              <textarea name="message" id="message" rows="4"></textarea>
+              <input
+                id="submit-button"
+                class="submit-button"
                 type="submit"
                 value="Envoyer"
               />

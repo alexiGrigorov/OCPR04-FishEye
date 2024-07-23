@@ -52,33 +52,19 @@
                 class="close-button [ icon-xmark ]"
               ></button>
             </div>
-            <form class="[ flow ]" action="">
+            <form id="form" class="[ flow ]" action="">
               <label for="first">Prénom</label>
               <input
                 type="text"
                 id="first"
                 name="first"
                 minlength="2"
-                pattern="^[\p{L} \-]+$"
                 required
               />
               <label for="last">Nom</label>
-              <input
-                type="text"
-                id="last"
-                name="last"
-                minlength="2"
-                pattern="^[\p{L} \-]+$"
-                required
-              />
+              <input type="text" id="last" name="last" minlength="2" required />
               <label for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                required
-              />
+              <input type="email" id="email" name="email" required />
               <label for="message">Votre message</label>
               <textarea name="message" id="message" rows="4"></textarea>
               <input
@@ -93,6 +79,21 @@
         <template id="photographer-portrait-template">
           <img class="portrait" id="portrait" src="" />
         </template>
+      </section>
+      <section class="portfolio">
+        <label for="sort">Trier par</label>
+        <select name="sort" id="cars">
+          <option value="popular">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+        <div class="exposition"></div>
+      </section>
+      <section class="photographer-summary [ wrapper ]">
+        <div class="details [ flex-end ]">
+          <span id="totalLikes" class="likes [ icon-heart ]">297 081</span>
+          <span id="price" class="price">300€/jour</span>
+        </div>
       </section>
     </main>
   </body>

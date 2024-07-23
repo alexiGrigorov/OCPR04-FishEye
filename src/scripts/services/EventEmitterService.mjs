@@ -1,0 +1,20 @@
+export default class EventEmitterService {
+  #events = {};
+  constructor() {}
+
+  subscribe(eventName, callback) {
+    if (!this.#events[eventName]) {
+      this.#events[eventName] = [];
+    }
+    this.#events[eventName].push(callback);
+  }
+
+  emit(eventName, ...args) {
+    const event = this.#events[eventName];
+    if (event) {
+      event.forEach((callback) => {
+        callback(...args);
+      });
+    }
+  }
+}

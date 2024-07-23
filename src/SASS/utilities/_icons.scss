@@ -1,3 +1,10 @@
+:not(button)[class^="icon-"],
+:not(button)[class*=" icon-"] {
+  display: flex;
+  align-items: center;
+  gap: var(--fs-400);
+}
+
 [class^="icon-"]::before,
 [class*=" icon-"]::before,
 [class^="icon-"]::after,
@@ -20,7 +27,7 @@
 .icon-camera:before {
   content: "\e900";
 }
-.icon-heart:before {
+.icon-heart:after {
   content: "\e901";
 }
 .icon-xmark:before {

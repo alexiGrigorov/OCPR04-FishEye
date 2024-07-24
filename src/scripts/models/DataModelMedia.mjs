@@ -37,6 +37,6 @@ class DataModelVideo extends DataModelMedia {
   constructor(rawData, photographerFirstName) {
     super(rawData);
     this.type = "video";
-    this.ressource = `../../db/Sample_Photos/${photographerFirstName}/${rawData.video}`;
+    this.ressource = `./../../../assets/images/media/${photographerFirstName}/${rawData.video}`;
   }
 }

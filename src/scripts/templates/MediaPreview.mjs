@@ -29,11 +29,16 @@ export default class MediaPreview {
 
     if (this.#mediaData.type === "image") {
       media = document.createElement("img");
+      media.src = this.#mediaData.ressource;
     }
     if (this.#mediaData.type === "video") {
       media = document.createElement("video");
+      // media.controls = true;
+      const source = document.createElement("source");
+      source.src = this.#mediaData.ressource;
+      media.append(source);
     }
-    media.src = this.#mediaData.ressource;
+
     media.alt = this.#mediaData.title;
     container.append(media);
     container.classList.remove("template-portrait");

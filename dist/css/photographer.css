@@ -152,10 +152,12 @@
   grid-row: span 2;
   display: grid;
   grid-template-rows: subgrid;
+  margin-block-end: var(--space-400);
 }
 .gallery .media > * {
   object-fit: cover;
   aspect-ratio: 1/1;
+  border-radius: var(--space-300);
 }
 .gallery .likes {
   font-weight: var(--fw-500);

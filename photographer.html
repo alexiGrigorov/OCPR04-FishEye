@@ -38,23 +38,28 @@
         <button id="open-modal-button" class="contact-button">
           Contactez-moi
         </button>
-
         <img class="static-portrait portrait" src="" alt="" />
       </section>
       <section class="portfolio">
-        <template id="sort-control-template">
-          <div class="sort-control">
-            <label for="sort">Trier par</label>
-            <select name="sort" id="sort">
-              <option value="popular">Popularité</option>
-              <option value="date">Date</option>
-              <option value="title">Titre</option>
-            </select>
-          </div>
-        </template>
-        <template id="gallery-template">
-          <div id="gallery" class="gallery"></div>
-        </template>
+        <div class="sort-control">
+          <label for="sort">Trier par</label>
+          <select name="sort" id="sort">
+            <option value="popular">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </div>
+        <div class="gallery [ grid-even-columns ]">
+          <template id="media-preview-template">
+            <article class="media-preview">
+              <section class="template-media-container media"></section>
+              <section class="info [ flex-space-between ]">
+                <p class="template-title title"></p>
+                <p class="template-likes likes [ icon-heart ]"></p>
+              </section>
+            </article>
+          </template>
+        </div>
       </section>
       <section class="photographer-summary [ wrapper ]">
         <div class="details [ flex-end ]">

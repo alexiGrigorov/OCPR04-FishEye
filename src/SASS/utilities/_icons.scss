@@ -2,7 +2,7 @@
 :not(button)[class*=" icon-"] {
   display: flex;
   align-items: center;
-  gap: var(--fs-400);
+  gap: var(--space-300);
 }
 
 [class^="icon-"]::before,

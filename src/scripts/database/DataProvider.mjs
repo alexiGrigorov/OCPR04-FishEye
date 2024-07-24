@@ -34,12 +34,12 @@ export default class DataProvider {
       (photographer) => new DataModelPhotographer(photographer)
     );
 
-    const medias = rawData.media.map(
+    const media = rawData.media.map(
       (media) => new DataModelMediaFactory(media, photographers)
     );
 
     this.#fishEyeLocalSessionCaching.setCache("photographers", photographers);
-    this.#fishEyeLocalSessionCaching.setCache("medias", medias);
+    this.#fishEyeLocalSessionCaching.setCache("media", media);
   }
 
   async refreshData() {
@@ -54,11 +54,11 @@ export default class DataProvider {
     return this.#fishEyeLocalSessionCaching.getCache("photographers");
   }
 
-  async getMedias() {
-    if (!this.#fishEyeLocalSessionCaching.isCached("medias")) {
+  async getMedia() {
+    if (!this.#fishEyeLocalSessionCaching.isCached("media")) {
       await this.#processRawData();
     }
 
-    return this.#fishEyeLocalSessionCaching.getCache("medias");
+    return this.#fishEyeLocalSessionCaching.getCache("media");
   }
 }

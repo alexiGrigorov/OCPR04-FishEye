@@ -1,0 +1,32 @@
+// .portfolio {
+//   margin-block-start: var(--space-400);
+// }
+
+.sort-control {
+  margin-block-start: var(--space-400);
+  margin-block-end: var(--space-600);
+}
+
+.gallery {
+  --_grid-gap: var(--space-1000-1100);
+  --_min-column-width: var(--space-1200-1400);
+  grid-auto-rows: auto auto;
+
+  color: var(--clr-primary);
+  font-size: var(--fs-500);
+
+  & .media {
+    grid-row: span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+
+    & > * {
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  .likes {
+    font-weight: var(--fw-500);
+  }
+}

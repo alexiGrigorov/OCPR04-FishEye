@@ -1,12 +1,15 @@
 import DataProvider from "../database/DataProvider.mjs";
 import EventCoordinator from "../events/EventCoordinator.mjs";
 
+import DynamicElementCreator from "../templates/DynamicElementCreator.mjs";
+import MediaPreview from "../templates/MediaPreview.mjs";
+
 class Photographer {
   #dataProvider;
   #eventCoordinator;
 
   #photographer;
-  #media;
+  #featuredMedia;
 
   constructor() {
     this.#dataProvider = new DataProvider();
@@ -15,10 +18,17 @@ class Photographer {
 
   async init() {
     const photographers = await this.#dataProvider.getPhotographers();
-
     this.#photographer = this.#URLGateKeepter(photographers);
 
     this.#fillStaticPhotographerDetails(this.#photographer);
+
+    const media = (await this.#dataProvider.getMedia()).filter(
+      (media) => media.photographerId === this.#photographer.id
+    );
+    this.#featuredMedia = new DynamicElementCreator(
+      MediaPreview,
+      media
+    ).elements;
   }
 
   #URLGateKeepter(photographers) {

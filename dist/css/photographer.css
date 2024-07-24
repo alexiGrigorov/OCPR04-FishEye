@@ -51,7 +51,7 @@
     padding-block: var(--space-500);
     padding-inline: var(--space-400);
     font-size: var(--fs-400);
-    font-weight: var(--fw-600);
+    font-weight: var(--fw-500);
   }
 }
 @media (max-width: 575px) {
@@ -136,6 +136,31 @@
     font-size: var(--fs-700);
   }
 }
+.sort-control {
+  margin-block-start: var(--space-400);
+  margin-block-end: var(--space-600);
+}
+
+.gallery {
+  --_grid-gap: var(--space-1000-1100);
+  --_min-column-width: var(--space-1200-1400);
+  grid-auto-rows: auto auto;
+  color: var(--clr-primary);
+  font-size: var(--fs-500);
+}
+.gallery .media {
+  grid-row: span 2;
+  display: grid;
+  grid-template-rows: subgrid;
+}
+.gallery .media > * {
+  object-fit: cover;
+  aspect-ratio: 1/1;
+}
+.gallery .likes {
+  font-weight: var(--fw-500);
+}
+
 .photographer-summary {
   position: fixed;
   bottom: 0;

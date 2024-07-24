@@ -42,6 +42,7 @@
   --space-1800: clamp(72rem, 69.2174rem + 13.913vi, 80rem);
   --space-1000-1100: clamp(4.5rem, 3.4565rem + 5.2174vi, 7.5rem);
   --space-1100-1400: clamp(6.75rem, 2.1413rem + 23.0435vi, 20rem);
+  --space-1200-1400: clamp(9rem, 5.1739rem + 19.1304vi, 20rem);
 }
 
 /*
@@ -260,7 +261,7 @@ textarea:not([rows]) {
 :not(button)[class*=" icon-"] {
   display: flex;
   align-items: center;
-  gap: var(--fs-400);
+  gap: var(--space-300);
 }
 
 [class^=icon-]::before,

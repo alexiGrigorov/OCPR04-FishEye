@@ -30,71 +30,66 @@
     </header>
     <main id="main">
       <section class="photographer-details">
-        <template id="photographer-identity-template">
-          <div class="identity">
-            <h2 class="name" id="name"></h2>
-            <p class="location" id="location"></p>
-            <p class="tagline" id="tagline"></p>
-          </div>
-        </template>
-        <template id="photographer-contact-template">
-          <button id="open-modal-button" class="contact-button">
-            Contactez-moi
-          </button>
-          <dialog id="modal" class="contact-modal">
-            <div class="modal-header">
-              <h3>
-                Contactez-moi <br />
-                <span id="name"></span>
-              </h3>
-              <button
-                id="close-modal-button"
-                class="close-button [ icon-xmark ]"
-              ></button>
-            </div>
-            <form id="form" class="[ flow ]" action="">
-              <label for="first">Prénom</label>
-              <input
-                type="text"
-                id="first"
-                name="first"
-                minlength="2"
-                required
-              />
-              <label for="last">Nom</label>
-              <input type="text" id="last" name="last" minlength="2" required />
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required />
-              <label for="message">Votre message</label>
-              <textarea name="message" id="message" rows="4"></textarea>
-              <input
-                id="submit-button"
-                class="submit-button"
-                type="submit"
-                value="Envoyer"
-              />
-            </form>
-          </dialog>
-        </template>
-        <template id="photographer-portrait-template">
-          <img class="portrait" id="portrait" src="" />
-        </template>
+        <div class="identity">
+          <h2 class="static-name name"></h2>
+          <p class="static-location location"></p>
+          <p class="static-tagline tagline"></p>
+        </div>
+        <button id="open-modal-button" class="contact-button">
+          Contactez-moi
+        </button>
+
+        <img class="static-portrait portrait" src="" alt="" />
       </section>
       <section class="portfolio">
-        <label for="sort">Trier par</label>
-        <select name="sort" id="cars">
-          <option value="popular">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
-        <div class="exposition"></div>
+        <template id="sort-control-template">
+          <div class="sort-control">
+            <label for="sort">Trier par</label>
+            <select name="sort" id="sort">
+              <option value="popular">Popularité</option>
+              <option value="date">Date</option>
+              <option value="title">Titre</option>
+            </select>
+          </div>
+        </template>
+        <template id="gallery-template">
+          <div id="gallery" class="gallery"></div>
+        </template>
       </section>
       <section class="photographer-summary [ wrapper ]">
         <div class="details [ flex-end ]">
           <span id="totalLikes" class="likes [ icon-heart ]">297 081</span>
-          <span id="price" class="price">300€/jour</span>
+          <span class="static-price price"></span>
         </div>
       </section>
+      <dialog id="contact-modal" class="contact-modal">
+        <div class="modal-header">
+          <h3>
+            Contactez-moi <br />
+            <span class="static-name"></span>
+          </h3>
+          <button
+            id="close-modal-button"
+            class="close-button [ icon-xmark ]"
+          ></button>
+        </div>
+        <form id="form" class="[ flow ]" action="">
+          <label for="first">Prénom</label>
+          <input type="text" id="first" name="first" minlength="2" required />
+          <label for="last">Nom</label>
+          <input type="text" id="last" name="last" minlength="2" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Votre message</label>
+          <textarea name="message" id="message" rows="4"></textarea>
+          <input
+            id="submit-button"
+            class="submit-button"
+            type="submit"
+            value="Envoyer"
+          />
+        </form>
+      </dialog>
     </main>
   </body>
 </html>

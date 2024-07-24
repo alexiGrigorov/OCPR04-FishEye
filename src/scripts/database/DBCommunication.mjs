@@ -1,4 +1,4 @@
-export default class DBService {
+export default class DBCommunication {
   #url;
 
   constructor(url) {

@@ -1,4 +1,4 @@
-export default class CachingService {
+export default class LocalSessionCaching {
   #serviceUser;
 
   constructor(serviceUser) {

@@ -1,4 +1,4 @@
-export default class EventEmitterService {
+export default class EventCoordinator {
   #events = {};
   constructor() {}
 

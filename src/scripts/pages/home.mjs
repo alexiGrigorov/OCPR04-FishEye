@@ -1,17 +1,18 @@
-import FishEyeDataProvider from "../api/FishEyeDataProvider.mjs";
-import FeaturedPhotographers from "../containers/FeaturedPhotographers.mjs";
+import DataProvider from "../database/DataProvider.mjs";
+import DynamicElementCreator from "../templates/DynamicElementCreator.mjs";
+import PhotographerPreview from "../templates/PhotographerPreview.mjs";
 
 class Home {
   #dataProvider;
-  #featuredPhotographers;
+  // #featuredPhotographers;
 
   constructor() {
-    this.#dataProvider = new FishEyeDataProvider();
-    this.#featuredPhotographers = new FeaturedPhotographers();
+    this.#dataProvider = new DataProvider();
   }
   async init() {
     const photographers = await this.#dataProvider.getPhotographers();
-    this.#featuredPhotographers.init(photographers);
+    // this.#featuredPhotographers =
+    new DynamicElementCreator(PhotographerPreview, photographers).elements;
   }
 }
 

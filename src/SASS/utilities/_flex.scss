@@ -27,6 +27,15 @@
   justify-content: center;
 }
 
+.flex-start {
+  // --_flex-direction: row;
+  // --_flex-align: center;
+
+  flex-direction: var(--_flex-direction, row);
+  align-items: var(--_flex-align, center);
+  justify-content: flex-start;
+}
+
 .flex-end {
   // --_flex-direction: row;
   // --_flex-align: center;

@@ -41,13 +41,23 @@
         <img class="static-portrait portrait" src="" alt="" />
       </section>
       <section class="portfolio">
-        <div class="sort-control">
-          <label for="sort">Trier par</label>
-          <select name="sort" id="sort">
-            <option value="popular">Popularité</option>
-            <option value="date">Date</option>
-            <option value="title">Titre</option>
-          </select>
+        <div class="sort [ flex-start ]">
+          <label class="select-label" for="sort">Trier par</label>
+          <div class="select-control">
+            <div class="select-mask [ icon-chevron-down ]"></div>
+            <select data-visible="true" name="sort" class="select-element">
+              <option value="popular">Popularité</option>
+              <option value="date">Date</option>
+              <option value="title">Titre</option>
+            </select>
+            <div data-visible="false" class="select-menu">
+              <button data-value="popular" class="[ icon-chevron-up ]">
+                Popularité
+              </button>
+              <button data-value="date">Date</button>
+              <button data-value="title">Titre</button>
+            </div>
+          </div>
         </div>
         <div class="gallery [ grid-even-columns ]">
           <template id="media-preview-template">

@@ -3,6 +3,7 @@ import EventCoordinator from "../events/EventCoordinator.mjs";
 
 import DynamicElementCreator from "../templates/DynamicElementCreator.mjs";
 import MediaPreview from "../templates/MediaPreview.mjs";
+import CustomSelect from "../components/CustomSelect.mjs";
 
 class Photographer {
   #dataProvider;
@@ -10,6 +11,8 @@ class Photographer {
 
   #photographer;
   #featuredMedia;
+
+  #interactiveElements = [];
 
   constructor() {
     this.#dataProvider = new DataProvider();
@@ -25,10 +28,11 @@ class Photographer {
     const media = (await this.#dataProvider.getMedia()).filter(
       (media) => media.photographerId === this.#photographer.id
     );
-    this.#featuredMedia = new DynamicElementCreator(
-      MediaPreview,
-      media
-    ).elements;
+    this.#loadDynamicElements(media);
+
+    const sortFilter = document.getElementsByClassName("sort")[0];
+    this.#interactiveElements.push(new CustomSelect(sortFilter));
+    this.#interactiveElements.forEach((element) => element.init());
   }
 
   #URLGateKeepter(photographers) {
@@ -62,6 +66,13 @@ class Photographer {
     portrait.src = photographer.portrait;
     portrait.alt = photographer.name;
     portrait.classList.remove("static-portrait");
+  }
+
+  #loadDynamicElements(media) {
+    this.#featuredMedia = new DynamicElementCreator(
+      MediaPreview,
+      media
+    ).elements;
   }
 }
 

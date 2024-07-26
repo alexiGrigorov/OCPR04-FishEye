@@ -294,11 +294,11 @@ textarea:not([rows]) {
   content: "\e902";
 }
 
-.icon-chevron-up:before {
+.icon-chevron-up:after {
   content: "\e903";
 }
 
-.icon-chevron-down:before {
+.icon-chevron-down:after {
   content: "\e904";
 }
 
@@ -356,6 +356,12 @@ textarea:not([rows]) {
   flex-direction: var(--_flex-direction, column);
   align-items: center;
   justify-content: center;
+}
+
+.flex-start {
+  flex-direction: var(--_flex-direction, row);
+  align-items: var(--_flex-align, center);
+  justify-content: flex-start;
 }
 
 .flex-end {
@@ -422,28 +428,6 @@ textarea:not([rows]) {
   color: var(--clr-neutral-100);
 }
 [class*=-button]:active {
-  transform: scale(0.98);
-}
-
-select {
-  position: relative;
-  appearance: none;
-  border-radius: var(--space-300);
-  border-style: none;
-  padding-block: var(--space-600);
-  padding-inline: var(--space-400);
-  background-color: var(--clr-primary);
-  font-size: var(--fs-500);
-  font-weight: var(--fw-700);
-  color: var(--clr-neutral-900);
-  text-align: center;
-  cursor: pointer;
-}
-select:hover, select:focus {
-  background-color: var(--clr-focus);
-  color: var(--clr-neutral-100);
-}
-select:active {
   transform: scale(0.98);
 }
 

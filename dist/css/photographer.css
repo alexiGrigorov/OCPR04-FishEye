@@ -232,10 +232,21 @@
   color: var(--clr-primary);
   font-size: var(--fs-500);
 }
+.gallery button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: default;
+  box-shadow: none;
+  appearance: none;
+}
 .gallery .media-preview {
   grid-row: span 2;
   display: grid;
-  order: attr(data-order);
   grid-template-rows: subgrid;
   gap: var(--space-400);
   justify-items: center;
@@ -250,6 +261,7 @@
   width: 100%;
 }
 .gallery .likes {
+  --_flex-gap: var(--space-300);
   font-weight: var(--fw-500);
 }
 

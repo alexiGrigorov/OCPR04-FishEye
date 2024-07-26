@@ -22,6 +22,9 @@ export default class MediaPreview {
       }
     }
 
+    const article = filledTemplate.querySelector("article");
+    article.id = this.data.id;
+
     const container = filledTemplate.querySelector(".template-media-container");
     let media;
 

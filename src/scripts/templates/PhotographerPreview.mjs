@@ -23,6 +23,9 @@ export default class PhotographerPreview {
       }
     }
 
+    const article = filledTemplate.querySelector("article");
+    article.id = this.data.id;
+
     const portrait = filledTemplate.querySelector(".template-portrait");
     portrait.src = this.data.portrait;
     portrait.alt = this.data.name;

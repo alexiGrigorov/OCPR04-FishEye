@@ -40,7 +40,28 @@ export default class SortableGalery {
       );
     });
 
+    this.#eventCoordinator.subscribe("likes-changed", (mediaID) => {
+      if (!this.#customSelect.currentOption === "popular") return;
+
+      const currentPosition = this.#mediaPreviewElements.findIndex(
+        (mediaPreviewElement) => mediaPreviewElement.data.id === mediaID
+      );
+      const reSortedMediaPreviews = this.#mediaPreviewElements.sort(
+        (a, b) => b.data.likes - a.data.likes
+      );
+      const newPosition = reSortedMediaPreviews.findIndex(
+        (mediaPreviewElement) => mediaPreviewElement.data.id === mediaID
+      );
+
+      if (currentPosition === newPosition) {
+        return;
+      }
+
+      this.#mediaPreviewElements.forEach((mediaPreview) =>
+        mediaPreview.reRender()
+      );
+    });
+
     this.#customSelect.init();
-    console.log("SortableGalery initialized");
   }
 }

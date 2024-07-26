@@ -2,10 +2,11 @@ export default class CustomSelect {
   #eventCoordinator;
   #eventPrefix;
 
-  #currentOption;
   #selectMask;
   #selectElement;
   #selectMenu;
+
+  currentOption;
 
   constructor(eventCoordinator, select) {
     this.#eventCoordinator = eventCoordinator;
@@ -17,10 +18,10 @@ export default class CustomSelect {
   }
 
   init() {
-    this.#currentOption = this.#selectElement.value;
+    this.currentOption = this.#selectElement.value;
 
     this.#selectElement.addEventListener("change", () => {
-      this.#currentOption = this.#selectElement.value;
+      this.currentOption = this.#selectElement.value;
       this.#eventCoordinator.emit(
         `${this.#eventPrefix}-valueChanged`,
         this.#selectElement.value
@@ -87,7 +88,7 @@ export default class CustomSelect {
   #selectNewOption(event) {
     if (event.target.tagName !== "BUTTON") return;
     const currentlyFocusedOption = event.target.dataset.value;
-    if (currentlyFocusedOption !== this.#currentOption) {
+    if (currentlyFocusedOption !== this.currentOption) {
       this.#selectElement.value = currentlyFocusedOption;
       const changeEvent = new Event("change", { bubbles: true });
       this.#selectElement.dispatchEvent(changeEvent);

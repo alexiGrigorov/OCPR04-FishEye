@@ -5,6 +5,7 @@ import DynamicElementCreator from "../templates/DynamicElementCreator.mjs";
 import MediaPreview from "../templates/MediaPreview.mjs";
 import ContactForm from "../components/ContactForm.mjs";
 import SortableGalery from "../components/SortableGalery.mjs";
+import LikesCounter from "../components/LikesCounter.mjs";
 
 class Photographer {
   #dataProvider;
@@ -88,6 +89,13 @@ class Photographer {
       this.#featuredMedia
     );
     this.#interactiveElements.push(sortableGalery);
+
+    const likesCounter = new LikesCounter(
+      this.#eventCoordinator,
+      document.getElementsByClassName("total-likes")[0],
+      this.#featuredMedia
+    );
+    this.#interactiveElements.push(likesCounter);
 
     this.#interactiveElements.forEach((element) => element.init());
   }

@@ -61,11 +61,13 @@
         </div>
         <div class="gallery [ grid-even-columns ]">
           <template id="media-preview-template">
-            <article data-order="" class="media-preview">
-              <section class="template-media-container media"></section>
+            <article class="media-preview">
+              <button class="template-media-container media"></button>
               <section class="info [ flex-space-between ]">
                 <p class="template-title title"></p>
-                <p class="template-likes likes [ icon-heart ]"></p>
+                <button
+                  class="template-likes likes [ icon-heart flex-space-between ]"
+                ></button>
               </section>
             </article>
           </template>
@@ -73,7 +75,7 @@
       </section>
       <section class="photographer-summary [ wrapper ]">
         <div class="details [ flex-end ]">
-          <span id="totalLikes" class="likes [ icon-heart ]">297 081</span>
+          <span class="total-likes [ icon-heart ]"></span>
           <span class="static-price price"></span>
         </div>
       </section>

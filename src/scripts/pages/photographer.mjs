@@ -3,7 +3,8 @@ import EventCoordinator from "../events/EventCoordinator.mjs";
 
 import DynamicElementCreator from "../templates/DynamicElementCreator.mjs";
 import MediaPreview from "../templates/MediaPreview.mjs";
-import CustomSelect from "../components/CustomSelect.mjs";
+import ContactForm from "../components/ContactForm.mjs";
+import SortableGalery from "../components/SortableGalery.mjs";
 
 class Photographer {
   #dataProvider;
@@ -30,9 +31,7 @@ class Photographer {
     );
     this.#loadDynamicElements(media);
 
-    const sortFilter = document.getElementsByClassName("sort")[0];
-    this.#interactiveElements.push(new CustomSelect(sortFilter));
-    this.#interactiveElements.forEach((element) => element.init());
+    this.#initializeInteractiveElements();
   }
 
   #URLGateKeepter(photographers) {
@@ -74,26 +73,25 @@ class Photographer {
       media
     ).elements;
   }
+
+  #initializeInteractiveElements() {
+    const contactForm = new ContactForm(
+      this.#eventCoordinator,
+      document.getElementById("contact-modal"),
+      document.getElementById("contact-button")
+    );
+    this.#interactiveElements.push(contactForm);
+
+    const sortableGalery = new SortableGalery(
+      this.#eventCoordinator,
+      document.getElementsByClassName("sort")[0],
+      this.#featuredMedia
+    );
+    this.#interactiveElements.push(sortableGalery);
+
+    this.#interactiveElements.forEach((element) => element.init());
+  }
 }
 
 const photographerPage = new Photographer();
 photographerPage.init();
-
-// const portfolio = document.querySelector(".portfolio");
-// const selectElement = document.querySelector("select");
-// const maskElement = document.createElement("DIV");
-// maskElement.classList.add("cover");
-
-// const selectWrapper = document.createElement("DIV");
-
-// portfolio.append(selectWrapper);
-// selectWrapper.append(selectElement);
-// selectWrapper.append(maskElement);
-
-// selectElement.addEventListener("keydown", (event) => {
-//   if (event.code === "Enter") {
-//     // event.preventDefault();
-//     maskElement.click();
-//   }
-//   console.log(event);
-// });

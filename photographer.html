@@ -35,7 +35,7 @@
           <p class="static-location location"></p>
           <p class="static-tagline tagline"></p>
         </div>
-        <button id="open-modal-button" class="contact-button">
+        <button id="contact-button" class="contact-button">
           Contactez-moi
         </button>
         <img class="static-portrait portrait" src="" alt="" />
@@ -61,7 +61,7 @@
         </div>
         <div class="gallery [ grid-even-columns ]">
           <template id="media-preview-template">
-            <article class="media-preview">
+            <article data-order="" class="media-preview">
               <section class="template-media-container media"></section>
               <section class="info [ flex-space-between ]">
                 <p class="template-title title"></p>
@@ -88,7 +88,7 @@
             class="close-button [ icon-xmark ]"
           ></button>
         </div>
-        <form id="form" class="[ flow ]" action="">
+        <form id="form" class="contact-form [ flow ]" action="">
           <label for="first">Prénom</label>
           <input type="text" id="first" name="first" minlength="2" required />
           <label for="last">Nom</label>

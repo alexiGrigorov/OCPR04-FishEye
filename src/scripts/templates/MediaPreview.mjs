@@ -1,24 +1,22 @@
 export default class MediaPreview {
   static #template = document.getElementById("media-preview-template");
-
-  #mediaData;
   #mediaPreveiwFilledTemplate;
-  #mediaPreveiwElement;
 
-  id;
+  data;
+  element;
 
   constructor(mediaData) {
-    this.#mediaData = mediaData;
-    this.id = this.#mediaData.id;
+    this.data = mediaData;
+
     const filledTemplate = MediaPreview.#template.content.cloneNode(true);
 
-    for (const key in this.#mediaData) {
+    for (const key in this.data) {
       if (key === "title" || key === "likes") {
         const elements = Array.from(
           filledTemplate.querySelectorAll(`.template-${key}`)
         );
         elements.forEach((element) => {
-          element.textContent = this.#mediaData[key];
+          element.textContent = this.data[key];
           element.classList.remove(`template-${key}`);
         });
       }
@@ -27,19 +25,19 @@ export default class MediaPreview {
     const container = filledTemplate.querySelector(".template-media-container");
     let media;
 
-    if (this.#mediaData.type === "image") {
+    if (this.data.type === "image") {
       media = document.createElement("img");
-      media.src = this.#mediaData.ressource;
+      media.src = this.data.ressource;
     }
-    if (this.#mediaData.type === "video") {
+    if (this.data.type === "video") {
       media = document.createElement("video");
       // media.controls = true;
       const source = document.createElement("source");
-      source.src = this.#mediaData.ressource;
+      source.src = this.data.ressource;
       media.append(source);
     }
 
-    media.alt = this.#mediaData.title;
+    media.alt = this.data.title;
     container.append(media);
     container.classList.remove("template-portrait");
 
@@ -50,11 +48,15 @@ export default class MediaPreview {
     MediaPreview.#template.parentElement.append(
       this.#mediaPreveiwFilledTemplate
     );
-    this.#mediaPreveiwElement =
-      MediaPreview.#template.parentElement.lastElementChild;
+    this.element = MediaPreview.#template.parentElement.lastElementChild;
+  }
+
+  reRender() {
+    this.element.remove();
+    MediaPreview.#template.parentElement.append(this.element);
   }
 
   remove() {
-    this.#mediaPreveiwElement.remove();
+    this.element.remove();
   }
 }

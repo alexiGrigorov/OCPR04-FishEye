@@ -1,11 +1,15 @@
 export default class FormService {
+  #eventCoordinator;
+  #eventPrefix;
+
   #formElement;
   #submitButton;
-  #eventEmitter;
 
-  constructor(formElement, eventEmitter) {
+  constructor(eventCoordinator, formElement) {
+    this.#eventCoordinator = eventCoordinator;
+    this.#eventPrefix = formElement.classList[0].split("-")[0];
+
     this.#formElement = formElement;
-    this.#eventEmitter = eventEmitter;
     this.#submitButton = Array.from(formElement.elements).find(
       (element) => element.id === "submit-button"
     );
@@ -18,10 +22,7 @@ export default class FormService {
   #validateFormHandler(event) {
     if (this.#formElement.reportValidity()) {
       event.preventDefault();
-      if (this.validFormEvent) {
-        this.#eventEmitter.emit(this.validFormEvent);
-      }
+      this.#eventCoordinator.emit(`${this.#eventPrefix}-formSubmitted`);
     }
   }
-  validFormEvent = "";
 }

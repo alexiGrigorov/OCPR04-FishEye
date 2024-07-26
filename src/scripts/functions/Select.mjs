@@ -1,10 +1,16 @@
 export default class CustomSelect {
+  #eventCoordinator;
+  #eventPrefix;
+
   #currentOption;
   #selectMask;
   #selectElement;
   #selectMenu;
 
-  constructor(select) {
+  constructor(eventCoordinator, select) {
+    this.#eventCoordinator = eventCoordinator;
+    this.#eventPrefix = select.classList[0].split("-")[0];
+
     this.#selectMask = select.getElementsByClassName("select-mask")[0];
     this.#selectElement = select.getElementsByClassName("select-element")[0];
     this.#selectMenu = select.getElementsByClassName("select-menu")[0];
@@ -14,9 +20,11 @@ export default class CustomSelect {
     this.#currentOption = this.#selectElement.value;
 
     this.#selectElement.addEventListener("change", () => {
-      console.log("old value: ", this.#currentOption);
       this.#currentOption = this.#selectElement.value;
-      console.log("new value: ", this.#currentOption);
+      this.#eventCoordinator.emit(
+        `${this.#eventPrefix}-valueChanged`,
+        this.#selectElement.value
+      );
     });
 
     this.#selectElement.addEventListener("keydown", (event) => {
@@ -57,6 +65,11 @@ export default class CustomSelect {
         this.#hideSelectMenu();
       }
     });
+
+    this.#eventCoordinator.emit(
+      `${this.#eventPrefix}-valueChanged`,
+      this.#selectElement.value
+    );
   }
 
   #showSelectMenu() {

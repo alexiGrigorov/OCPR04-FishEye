@@ -149,12 +149,7 @@
     }
   }
 
-  & .title {
-    font-size: inherit;
-    font-weight: var(--fw-400);
-  }
-
-  & .likes {
+  .likes {
     --_flex-gap: var(--space-300);
     font-weight: var(--fw-500);
   }

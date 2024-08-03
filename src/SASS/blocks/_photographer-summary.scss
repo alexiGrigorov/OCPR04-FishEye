@@ -3,7 +3,10 @@
 .photographer-summary {
   position: fixed;
   bottom: 0;
-  z-index: -1;
+  right: 0;
+  width: fit-content;
+
+  margin-inline-end: calc((100% - min(var(--max-width), 100%)) / 2);
 
   & .details {
     --_flex-gap: 0;
@@ -17,6 +20,7 @@
     background-color: var(--clr-focus);
     font-size: var(--fs-500);
     font-weight: var(--fw-500);
+    z-index: 1;
   }
 
   & .details > * {

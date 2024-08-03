@@ -75,14 +75,14 @@
         </div>
       </section>
     </main>
-    <aside class="photographer-summary [ wrapper ]">
+    <aside class="photographer-summary">
       <div class="details [ flex-end ]">
         <span class="total-likes [ icon-heart ]"></span>
         <span class="static-price price"></span>
       </div>
     </aside>
-    <dialog id="contact-modal" class="contact-modal">
-      <div class="modal-header">
+    <dialog id="contact-modal" class="contact-modal [ wrapper-half ]">
+      <div class="modal-header [ flex-space-between ]">
         <h3>
           Contactez-moi <br />
           <span class="static-name"></span>
@@ -110,21 +110,21 @@
         />
       </form>
     </dialog>
-    <dialog id="lightbox-modal" class="lightbox-modal">
+    <dialog id="lightbox-modal" class="lightbox-modal [ wrapper ]">
       <button
         id="close-modal-button"
         class="close-button [ icon-xmark ]"
         aria-label="Close Lightbox"
       ></button>
-      <div id="lightbox" class="lighbox"></div>
+      <div id="lightbox" class="lightbox"></div>
       <button
         id="previous-media"
-        class="previous-media [ icon-chevron-left ]"
+        class="previous-media-button [ icon-chevron-left ]"
         aria-label="Previous media"
       ></button>
       <button
         id="next-media"
-        class="next-media [ icon-chevron-right ]"
+        class="next-media-button [ icon-chevron-right ]"
         aria-label="Next media"
       ></button>
       <p class="title"></p>

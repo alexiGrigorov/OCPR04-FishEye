@@ -71,6 +71,10 @@ export default class MediaLightboxDialog {
     }
 
     media.alt = mediaPreviewData.title;
-    this.#lightbox.replaceChildren(media);
+
+    const title = document.createElement("p");
+    title.textContent = mediaPreviewData.title;
+
+    this.#lightbox.replaceChildren(media, title);
   }
 }

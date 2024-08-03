@@ -327,6 +327,11 @@ textarea:not([rows]) {
   margin-inline: auto;
 }
 
+.wrapper-half {
+  width: min(var(--_max-wrapper-width, calc(var(--max-width) / 2)), 100% - var(--_inline-wrapper-padding, var(--space-600)) * 2);
+  margin-inline: auto;
+}
+
 .wrapper-p-width {
   width: min(var(--_max-wrapper-width, var(--p-max-width)), 100% - var(--_inline-wrapper-padding, var(--space-600)) * 2);
   margin-inline: auto;

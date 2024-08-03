@@ -15,7 +15,9 @@ export default class Modal {
     closeModalButton.removeAttribute("id");
     this.#closeModalButton = closeModalButton;
 
-    this.#closeModalButton.addEventListener("click", () => this.closeModal());
+    this.#closeModalButton.addEventListener("click", () => {
+      this.closeModal();
+    });
 
     this.#eventCoordinator.subscribe(`${this.#eventPrefix}-openModal`, () =>
       this.showModal()

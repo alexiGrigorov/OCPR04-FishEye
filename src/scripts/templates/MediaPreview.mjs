@@ -42,7 +42,7 @@ export default class MediaPreview {
 
     media.alt = this.data.title;
     container.append(media);
-    container.classList.remove("template-portrait");
+    container.classList.remove("template-media-container");
 
     this.#mediaPreveiwFilledTemplate = filledTemplate;
   }

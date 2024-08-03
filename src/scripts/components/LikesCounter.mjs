@@ -25,7 +25,6 @@ export default class LikesCounter {
         mediaPreviewElement.element.querySelector(".likes")
     );
 
-    console.log("likes counter initialized");
     this.#totalLikesCounterElement.textContent = this.#countTotalLikes();
     this.#mediaLikeButtons.forEach((likeButton) =>
       likeButton.addEventListener("click", () => this.#mediaLiked(event))

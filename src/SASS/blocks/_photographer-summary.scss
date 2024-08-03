@@ -3,6 +3,7 @@
 .photographer-summary {
   position: fixed;
   bottom: 0;
+  z-index: -1;
 
   & .details {
     --_flex-gap: 0;

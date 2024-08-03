@@ -61,4 +61,12 @@ export default class DataProvider {
 
     return this.#fishEyeLocalSessionCaching.getCache("media");
   }
+
+  updateMediaLikes(mediaId) {
+    const media = this.#fishEyeLocalSessionCaching.getCache("media");
+    const mediaToUpdate = media.find((media) => media.id === mediaId);
+    mediaToUpdate.likes += 1;
+
+    this.#fishEyeLocalSessionCaching.setCache("media", media);
+  }
 }

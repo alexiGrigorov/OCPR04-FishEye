@@ -11,6 +11,11 @@ class Home {
   }
   async init() {
     const photographers = await this.#dataProvider.getPhotographers();
+
+    this.#loadDynamicElements(photographers);
+  }
+
+  #loadDynamicElements(photographers) {
     // this.#featuredPhotographers =
     new DynamicElementCreator(PhotographerPreview, photographers).elements;
   }

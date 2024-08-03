@@ -6,6 +6,7 @@ import MediaPreview from "../templates/MediaPreview.mjs";
 import ContactForm from "../components/ContactForm.mjs";
 import SortableGalery from "../components/SortableGalery.mjs";
 import LikesCounter from "../components/LikesCounter.mjs";
+import MediaLightboxDialog from "../components/MediaLightboxDialog.mjs";
 
 class Photographer {
   #dataProvider;
@@ -25,14 +26,19 @@ class Photographer {
     const photographers = await this.#dataProvider.getPhotographers();
     this.#photographer = this.#URLGateKeepter(photographers);
 
-    this.#fillStaticPhotographerDetails(this.#photographer);
+    this.#fillStaticDetails(this.#photographer);
 
     const media = (await this.#dataProvider.getMedia()).filter(
       (media) => media.photographerId === this.#photographer.id
     );
+
     this.#loadDynamicElements(media);
 
     this.#initializeInteractiveElements();
+
+    this.#eventCoordinator.subscribe("likes-changed", (mediaId) => {
+      this.#dataProvider.updateMediaLikes(mediaId);
+    });
   }
 
   #URLGateKeepter(photographers) {
@@ -49,7 +55,7 @@ class Photographer {
     return photographer;
   }
 
-  #fillStaticPhotographerDetails(photographer) {
+  #fillStaticDetails(photographer) {
     for (const key in photographer) {
       if (key !== "portrait" && key !== "id") {
         const elements = Array.from(
@@ -96,6 +102,13 @@ class Photographer {
       this.#featuredMedia
     );
     this.#interactiveElements.push(likesCounter);
+
+    const mediaLightboxDialog = new MediaLightboxDialog(
+      this.#eventCoordinator,
+      document.getElementById("lightbox-modal"),
+      this.#featuredMedia
+    );
+    this.#interactiveElements.push(mediaLightboxDialog);
 
     this.#interactiveElements.forEach((element) => element.init());
   }

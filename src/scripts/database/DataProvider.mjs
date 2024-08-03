@@ -14,8 +14,11 @@ export default class DataProvider {
       return DataProvider.#singleton;
     }
 
+    // this.#fishEyeDBCommunication = new DBCommunication(
+    //   "./../../../db/photographers.json"
+    // );
     this.#fishEyeDBCommunication = new DBCommunication(
-      "./../../../db/photographers.json"
+      "https://alexigrigorov.github.io/db/photographers.json"
     );
     this.#fishEyeLocalSessionCaching = new LocalSessionCaching("fishEye");
   }

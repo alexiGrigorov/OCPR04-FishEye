@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,7 +45,12 @@
           <label class="select-label" for="sort">Trier par</label>
           <div class="select-control">
             <div class="select-mask [ icon-chevron-down ]"></div>
-            <select data-visible="true" name="sort" class="select-element">
+            <select
+              data-visible="true"
+              name="sort"
+              id="sort"
+              class="select-element"
+            >
               <option value="popular">Popularité</option>
               <option value="date">Date</option>
               <option value="title">Titre</option>
@@ -64,7 +69,7 @@
             <article class="media-preview">
               <button class="template-media-container media"></button>
               <section class="info [ flex-space-between ]">
-                <p class="template-title title"></p>
+                <h2 class="template-title title"></h2>
                 <button
                   class="template-likes likes [ icon-heart flex-space-between ]"
                   aria-label="likes"

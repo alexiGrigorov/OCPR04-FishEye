@@ -31,6 +31,7 @@ export default class MediaPreview {
     if (this.data.type === "image") {
       media = document.createElement("img");
       media.src = this.data.ressource;
+      media.alt = this.data.title;
     }
     if (this.data.type === "video") {
       media = document.createElement("video");
@@ -38,9 +39,9 @@ export default class MediaPreview {
       const source = document.createElement("source");
       source.src = this.data.ressource;
       media.append(source);
+      container.ariaLabel = this.data.title;
     }
 
-    media.alt = this.data.title;
     container.append(media);
     container.classList.remove("template-media-container");
 

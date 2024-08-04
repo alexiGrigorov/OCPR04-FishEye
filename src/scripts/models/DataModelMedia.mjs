@@ -29,7 +29,7 @@ class DataModelImage extends DataModelMedia {
   constructor(rawData, photographerFirstName) {
     super(rawData);
     this.type = "image";
-    this.ressource = `./../../../assets/images/media/thumbnails/${photographerFirstName}/${rawData.image}`;
+    this.ressource = `https://raw.githubusercontent.com/alexiGrigorov/OCPR05-FishEye/main/assets/images/media/thumbnails/${photographerFirstName}/${rawData.image}`;
   }
 }
 
@@ -37,6 +37,6 @@ class DataModelVideo extends DataModelMedia {
   constructor(rawData, photographerFirstName) {
     super(rawData);
     this.type = "video";
-    this.ressource = `./../../../assets/images/media/thumbnails/${photographerFirstName}/${rawData.video}`;
+    this.ressource = `https://raw.githubusercontent.com/alexiGrigorov/OCPR05-FishEye/main/assets/images/media/thumbnails/${photographerFirstName}/${rawData.video}`;
   }
 }

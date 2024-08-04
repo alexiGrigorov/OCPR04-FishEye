@@ -22,6 +22,12 @@ export default class FormService {
   #validateFormHandler(event) {
     if (this.#formElement.reportValidity()) {
       event.preventDefault();
+
+      console.log("Form submitted");
+      Array.from(this.#formElement.elements).forEach((element) => {
+        console.log(`${element.id}: ${element.value}`);
+      });
+
       this.#eventCoordinator.emit(`${this.#eventPrefix}-formSubmitted`);
     }
   }

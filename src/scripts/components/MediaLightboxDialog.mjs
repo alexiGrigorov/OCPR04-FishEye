@@ -29,31 +29,55 @@ export default class MediaLightboxDialog {
   }
 
   init() {
-    this.#mediaPreviewElements.forEach((mediaPreviewElement, index) =>
-      mediaPreviewElement.element.children[0].addEventListener("click", () => {
-        this.#eventCoordinator.emit(`${this.#eventPrefix}-openModal`);
-        this.#currentMediaIndex = index;
-        this.#presentMedia(index);
-      })
+    this.#mediaPreviewElements.forEach((mediaPreviewElement) =>
+      mediaPreviewElement.element.children[0].addEventListener(
+        "click",
+        (event) => {
+          console.log(event.target);
+          this.#currentMediaIndex = this.#mediaPreviewElements.findIndex(
+            (element) => element.element.contains(event.target)
+          );
+          console.log(this.#currentMediaIndex);
+          this.#showPresentMedia(this.#currentMediaIndex);
+          this.#eventCoordinator.emit(`${this.#eventPrefix}-openModal`);
+        }
+      )
     );
 
     this.#previousMediaButton.addEventListener("click", () => {
-      this.#currentMediaIndex =
-        (this.#currentMediaIndex - 1 + this.#mediaPreviewElements.length) %
-        this.#mediaPreviewElements.length;
-      this.#presentMedia(this.#currentMediaIndex);
+      this.#showPreviousMedia();
     });
 
     this.#nextMediaButton.addEventListener("click", () => {
-      this.#currentMediaIndex =
-        (this.#currentMediaIndex + 1) % this.#mediaPreviewElements.length;
-      this.#presentMedia(this.#currentMediaIndex);
+      this.#showNextMedia();
+    });
+
+    this.#modal.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        this.#showPreviousMedia();
+      }
+      if (event.key === "ArrowRight") {
+        this.#showNextMedia();
+      }
     });
 
     new Modal(this.#eventCoordinator, this.#modal);
   }
 
-  #presentMedia(index) {
+  #showPreviousMedia() {
+    this.#currentMediaIndex =
+      (this.#currentMediaIndex - 1 + this.#mediaPreviewElements.length) %
+      this.#mediaPreviewElements.length;
+    this.#showPresentMedia(this.#currentMediaIndex);
+  }
+
+  #showNextMedia() {
+    this.#currentMediaIndex =
+      (this.#currentMediaIndex + 1) % this.#mediaPreviewElements.length;
+    this.#showPresentMedia(this.#currentMediaIndex);
+  }
+
+  #showPresentMedia(index) {
     const mediaPreviewData = this.#mediaPreviewElements[index].data;
 
     let media;

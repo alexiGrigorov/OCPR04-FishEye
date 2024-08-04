@@ -42,10 +42,15 @@
       </section>
       <section class="portfolio">
         <div class="sort [ flex-start ]">
-          <label class="select-label" for="sort">Trier par</label>
+          <label class="select-label" for="select-element">Trier par</label>
           <div class="select-control">
             <div class="select-mask [ icon-chevron-down ]"></div>
-            <select data-visible="true" name="sort" class="select-element">
+            <select
+              data-visible="true"
+              id="select-element"
+              name="select-element"
+              class="select-element"
+            >
               <option value="popular">Popularité</option>
               <option value="date">Date</option>
               <option value="title">Titre</option>

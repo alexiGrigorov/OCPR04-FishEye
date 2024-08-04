@@ -226,7 +226,7 @@
   margin-block: var(--space-900);
   --_grid-gap: var(--space-1000);
   row-gap: var(--space-700);
-  --_min-column-width: var(--space-1300);
+  --_min-column-width: var(--space-1400);
   grid-auto-rows: auto auto;
   color: var(--clr-primary);
   font-size: var(--fs-500);

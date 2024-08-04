@@ -42,6 +42,7 @@ export default class MediaPreview {
 
     media.alt = this.data.title;
     container.append(media);
+    container.ariaLabel = `Open ${this.data.title}`;
     container.classList.remove("template-media-container");
 
     this.#mediaPreveiwFilledTemplate = filledTemplate;

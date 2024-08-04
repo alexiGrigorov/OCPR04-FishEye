@@ -29,7 +29,7 @@ class DataModelImage extends DataModelMedia {
   constructor(rawData, photographerFirstName) {
     super(rawData);
     this.type = "image";
-    this.ressource = `./../../../assets/images/media/${photographerFirstName}/${rawData.image}`;
+    this.ressource = `./../../../assets/images/media/thumbnails/${photographerFirstName}/${rawData.image}`;
   }
 }
 
@@ -37,6 +37,6 @@ class DataModelVideo extends DataModelMedia {
   constructor(rawData, photographerFirstName) {
     super(rawData);
     this.type = "video";
-    this.ressource = `./../../../assets/images/media/${photographerFirstName}/${rawData.video}`;
+    this.ressource = `./../../../assets/images/media/thumbnails/${photographerFirstName}/${rawData.video}`;
   }
 }

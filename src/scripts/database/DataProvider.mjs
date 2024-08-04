@@ -15,7 +15,7 @@ export default class DataProvider {
     }
 
     this.#fishEyeDBCommunication = new DBCommunication(
-      "./../../../db/photographers.json"
+      "https://raw.githubusercontent.com/alexiGrigorov/OCPR05-FishEye/main/db/photographers.json"
     );
 
     this.#fishEyeLocalSessionCaching = new LocalSessionCaching("fishEye");

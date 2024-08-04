@@ -23,8 +23,8 @@ export default class FormService {
     if (this.#formElement.reportValidity()) {
       event.preventDefault();
 
-      console.log("Form submitted");
       Array.from(this.#formElement.elements).forEach((element) => {
+        if (element.type === "submit") return;
         console.log(`${element.id}: ${element.value}`);
       });
 
